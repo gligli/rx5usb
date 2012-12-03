@@ -1,0 +1,282 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: fmain.sabout
+msgid ""
+"Yamaha RX5 waveform bank editor /\n"
+"RX5USB cartridge programmer\n"
+"\n"
+"Version: 0.01 alpha\n"
+"Coder: gligli\n"
+"License: GNU GPL\n"
+msgstr ""
+
+#: fmain.sbank
+msgid "Sound bank"
+msgstr ""
+
+#: fmain.sempty
+msgid "(Nothing)"
+msgstr ""
+
+#: fmain.smaintitle
+msgid "%s - %s"
+msgstr ""
+
+#: fmain.smodified
+msgid " (modified)"
+msgstr ""
+
+#: fmain.ssample
+msgid "New sample"
+msgstr ""
+
+#: fmain.ssavecurrent
+msgid "Save current bank?"
+msgstr ""
+
+#: fmain.ssizecpation
+msgid "%n%% (%n KB/%n KB)"
+msgstr ""
+
+#: fmain.sunabletoimport
+msgid "Unable to import %s: %s."
+msgstr ""
+
+#: fmain.sunabletoplay
+msgid "Unable to play sample"
+msgstr ""
+
+#: fmain.suntitled
+msgid "New bank"
+msgstr ""
+
+#: rx5classes.snotabankfile
+msgid "Not a valid RX5 bank file"
+msgstr ""
+
+#: rx5classes.spcmconverterror
+msgid "PCM convert error"
+msgstr ""
+
+#: rx5classes.sunknownformat
+msgid "Unknown format"
+msgstr ""
+
+#: tmainform.btabout.caption
+msgid "About RX5USB"
+msgstr ""
+
+#: tmainform.btaddmanysounds.caption
+msgid "Import samples"
+msgstr ""
+
+#: tmainform.btaddsound.caption
+msgid "Add sound"
+msgstr ""
+
+#: tmainform.btimportsample.caption
+msgid "Import sample"
+msgstr ""
+
+#: tmainform.btnew.caption
+msgid "New"
+msgstr ""
+
+#: tmainform.btopen.caption
+msgid "Open"
+msgstr ""
+
+#: tmainform.btplayall.caption
+msgid "Play"
+msgstr ""
+
+#: tmainform.btplayloop.caption
+msgid "Play loop"
+msgstr ""
+
+#: tmainform.btprogram.caption
+msgid "Program"
+msgstr ""
+
+#: tmainform.btremovesound.caption
+msgid "Remove sound"
+msgstr ""
+
+#: tmainform.btsave.caption
+msgid "Save"
+msgstr ""
+
+#: tmainform.btstop.caption
+msgid "Stop"
+msgstr ""
+
+#: tmainform.caption
+msgid "MainForm"
+msgstr ""
+
+#: tmainform.chloop.caption
+msgid "Enabled"
+msgstr ""
+
+#: tmainform.gbenv.caption
+msgid "Envelope (higher means slower)"
+msgstr ""
+
+#: tmainform.gbloop.caption
+msgid "Looping (left click / right click on waveform sets loop start / end)"
+msgstr ""
+
+#: tmainform.gbquality.caption
+msgid "PCM quality (sample rate depends on base pitch)"
+msgstr ""
+
+#: tmainform.label1.caption
+msgid "Loop start"
+msgstr ""
+
+#: tmainform.label10.caption
+msgid "Decay 1 (level)"
+msgstr ""
+
+#: tmainform.label11.caption
+msgid "Decay 2 (rate)"
+msgstr ""
+
+#: tmainform.label12.caption
+msgid "Release (rate)"
+msgstr ""
+
+#: tmainform.label13.caption
+msgid "Gate (time)"
+msgstr ""
+
+#: tmainform.label14.caption
+msgid "semitones"
+msgstr ""
+
+#: tmainform.label2.caption
+msgid "Loop end"
+msgstr ""
+
+#: tmainform.label3.caption
+msgid "Attack (rate)"
+msgstr ""
+
+#: tmainform.label4.caption
+msgid "Volume"
+msgstr ""
+
+#: tmainform.label5.caption
+msgctxt "TMAINFORM.LABEL5.CAPTION"
+msgid "Name"
+msgstr ""
+
+#: tmainform.label6.caption
+msgctxt "TMAINFORM.LABEL6.CAPTION"
+msgid "Base pitch"
+msgstr ""
+
+#: tmainform.label7.caption
+msgctxt "TMAINFORM.LABEL7.CAPTION"
+msgid "Channel"
+msgstr ""
+
+#: tmainform.label8.caption
+msgctxt "tmainform.label8.caption"
+msgid "Sample rate"
+msgstr ""
+
+#: tmainform.label9.caption
+msgid "Decay 1 (rate)"
+msgstr ""
+
+#: tmainform.llbasics.caption
+msgid "Basic settings"
+msgstr ""
+
+#: tmainform.llchannel.caption
+msgid "llChannel"
+msgstr ""
+
+#: tmainform.llsamplerate.caption
+msgid "llSampleRate"
+msgstr ""
+
+#: tmainform.llsize.caption
+msgid "llSize"
+msgstr ""
+
+#: tmainform.llvolume.caption
+msgid "llVolume"
+msgstr ""
+
+#: tmainform.lvsounds.columns[0].caption
+msgctxt "tmainform.lvsounds.columns[0].caption"
+msgid "Name"
+msgstr ""
+
+#: tmainform.lvsounds.columns[1].caption
+msgid "From"
+msgstr ""
+
+#: tmainform.lvsounds.columns[2].caption
+msgctxt "tmainform.lvsounds.columns[2].caption"
+msgid "Format"
+msgstr ""
+
+#: tmainform.lvsounds.columns[3].caption
+msgctxt "tmainform.lvsounds.columns[3].caption"
+msgid "Sample rate"
+msgstr ""
+
+#: tmainform.lvsounds.columns[4].caption
+msgid "Length"
+msgstr ""
+
+#: tmainform.lvsounds.columns[5].caption
+msgctxt "tmainform.lvsounds.columns[5].caption"
+msgid "Size"
+msgstr ""
+
+#: tmainform.lvsounds.columns[6].caption
+msgctxt "TMAINFORM.LVSOUNDS.COLUMNS[6].CAPTION"
+msgid "Channel"
+msgstr ""
+
+#: tmainform.odbank.title
+msgid "Open existing bank"
+msgstr ""
+
+#: tmainform.odsample.title
+msgid "Open existing samples"
+msgstr ""
+
+#: tmainform.rb12.caption
+msgid "12 bit"
+msgstr ""
+
+#: tmainform.rb8.caption
+msgid "8 bit"
+msgstr ""
+
+#: tmainform.sdbank.title
+msgid "Save bank as"
+msgstr ""
+
+#: tmainform.tbtop.caption
+msgid "tbTop"
+msgstr ""
+
+#: tmainform.toolbutton1.caption
+msgid "ToolButton1"
+msgstr ""
+
+#: tmainform.toolbutton2.caption
+msgid "ToolButton2"
+msgstr ""
+
+#: tmainform.toolbutton5.caption
+msgid "ToolButton5"
+msgstr ""
+
