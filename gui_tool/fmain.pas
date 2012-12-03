@@ -177,7 +177,7 @@ resourcestring
    'Yamaha RX5 waveform bank editor /'+sLineBreak+
    'RX5USB cartridge programmer'+sLineBreak+
    sLineBreak+
-   'Version: 0.01 alpha'+sLineBreak+
+   'Version: 0.02 alpha'+sLineBreak+
    'Coder: gligli'+sLineBreak+
    'License: GNU GPL';
 

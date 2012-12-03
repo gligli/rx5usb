@@ -21,10 +21,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="FMain"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="561"/>
-        <CursorPos X="46" Y="594"/>
+        <TopLine Value="141"/>
+        <CursorPos X="19" Y="180"/>
         <UsageCount Value="112"/>
+        <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="rx5classes.pas"/>
@@ -170,8 +173,6 @@
       </Unit19>
       <Unit20>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\objpas\classes\classesh.inc"/>
-        <IsVisibleTab Value="True"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="773"/>
         <CursorPos X="14" Y="802"/>
         <UsageCount Value="13"/>
@@ -401,6 +402,9 @@
         <UsageCount Value="10"/>
       </Unit47>
     </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
     <JumpHistory Count="0" HistoryIndex="-1"/>
   </ProjectSession>
 </CONFIG>
