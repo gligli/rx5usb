@@ -149,6 +149,7 @@ type
   private
     FSounds:TRX5Sounds;
     FBankID:Byte;
+    FGenerateBankID:Boolean;
     function GetProjectedSize: Integer;
   public
     constructor Create;
@@ -159,6 +160,7 @@ type
     procedure ExportToFile(AFileName:String);
 
     property BankId:Byte read FBankID write FBankID;
+    property GenerateBankId:Boolean read FGenerateBankId write FGenerateBankId;
 
     property ProjectedSize:Integer read GetProjectedSize;
 
@@ -737,6 +739,7 @@ end;
 
 procedure TRX5Bank.Clear;
 begin
+  FGenerateBankID:=True;
   FBankID:=$10;
   Sounds.Clear;
 end;
@@ -804,6 +807,12 @@ begin
     hms.Seek(0,soFromBeginning);
     hms.ReadBuffer(header,Min(Length(header),hms.Size));
     cs:=RX5_Checksum(@header[0],Length(header));
+
+    if GenerateBankId then
+    begin
+      header[4]:=(cs and $ff) xor ((cs shr 8) and $ff); // hash of header checksum
+      cs:=RX5_Checksum(@header[0],Length(header));
+    end;
 
     fs.Seek(0,soFromBeginning);
     fs.WriteBuffer(header,Length(header));

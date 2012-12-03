@@ -590,7 +590,7 @@ begin
 
   llSize.Caption:=Format(SSizeCpation,[100*projected/CRX5BankSize,projected/1024,CRX5BankSize/1024]);
 
-  btProgram.Enabled:=not overloaded;
+  btSave.Enabled:=not overloaded;
 
   FPCurrentSound:=nil;
   if (lvSounds.ItemIndex>=0)  then
