@@ -42,7 +42,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="5">
       <Unit0>
         <Filename Value="rx5usb_tool.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -61,6 +61,19 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="rx5classes"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="rawhid.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="rawhid"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="fprogram.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ProgramForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="fprogram"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

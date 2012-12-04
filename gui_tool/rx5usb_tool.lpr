@@ -27,7 +27,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, FMain, rx5classes, tachartlazaruspkg
+  Forms, FMain, rx5classes, tachartlazaruspkg, rawhid, fprogram
   { you can add units after this };
 
 {$R *.res}

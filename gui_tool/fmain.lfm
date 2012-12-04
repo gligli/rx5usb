@@ -12,7 +12,7 @@ object MainForm: TMainForm
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   Position = poScreenCenter
-  LCLVersion = '1.0.2.0'
+  LCLVersion = '1.0.4.0'
   object tbTop: TToolBar
     Left = 0
     Height = 42
@@ -61,6 +61,7 @@ object MainForm: TMainForm
       Top = 1
       Caption = 'Program'
       ImageIndex = 3
+      OnClick = btProgramClick
     end
     object ToolButton2: TToolButton
       Left = 242

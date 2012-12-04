@@ -25,7 +25,7 @@ unit rx5classes;
 interface
 
 uses
-  Classes, SysUtils, contnrs, math, sdl, jedi_sdl_sound;
+  Classes, SysUtils, contnrs, math, sdl, jedi_sdl_sound, rawhid;
 
 type
   TBassErrorString=record
@@ -33,10 +33,11 @@ type
     Text:String;
   end;
 
-  TRX5ProgressEvent=procedure(APosition,AMax:Integer) of object;
-
-  TRX5BankIndex=(rbiNone=0,rbiBankA=1,rbiBankB=2);
+  TRX5ProgressStatus=(rpsIdle=0,rpsConnecting=1,rpsAwaitingResponse=2,rpsUploading=3,rpsDownloading=4,rpsError=5,rpsDone=6);
+  TRX5BankIndex=(rbiNone=0,rbiSide1BankA=1,rbiSide1BankB=2,rbiSide2BankA=3,rbiSide2BankB=4);
   TRX5SoundFormat=(rsfNone=0,rsfPCM8=1,rsfPCM12=2);
+
+  TRX5ProgressEvent=function(APosition,AMax:Integer):Boolean of object;
 
   ERX5Error = class(Exception);
 
@@ -158,6 +159,7 @@ type
     procedure Clear;
     procedure ImportFromFile(AFileName:String);
     procedure ExportToFile(AFileName:String);
+    procedure ExportToStream(AStream:TStream);
 
     property BankId:Byte read FBankID write FBankID;
     property GenerateBankId:Boolean read FGenerateBankId write FGenerateBankId;
@@ -180,17 +182,17 @@ type
 
   TRX5Cartridge = class
   private
+    FBankIndex:TRX5BankIndex;
+    FStatus:TRX5ProgressStatus;
     FOnprogress:TRX5ProgressEvent;
-
-    FPBanks:array[rbiBankA..rbiBankB] of TRX5Bank;
-    function GetPBank(Index: TRX5BankIndex): TRX5Bank;
-    procedure SetPBank(Index: TRX5BankIndex; AValue: TRX5Bank);
+    function Progress(AStatus:TRX5ProgressStatus;APosition,AMax:Integer):Boolean;
   public
-    procedure Upload;
+    procedure Upload(APStream:TStream);
+
+    property BankIndex:TRX5BankIndex read FBankIndex write FBankIndex;
+    property Status:TRX5ProgressStatus read FStatus;
 
     property OnProgress:TRX5ProgressEvent read FOnprogress write FOnprogress;
-
-    property PBanks[Index:TRX5BankIndex]: TRX5Bank read GetPBank write SetPBank; default;
   end;
 
   { TRX5Library }
@@ -207,6 +209,19 @@ type
     property Name: String read FName write FName;
   end;
 
+resourcestring
+  SNotABankFile = 'Not a valid RX5 bank file';
+  SUnknownFormat = 'Unknown format';
+  SPCMConvertError = 'PCM convert error';
+
+  SIdle = 'Idle';
+  SConnecting = 'Connecting';
+  SAwaitingResponse = 'Awaiting response';
+  SUploading = 'Uploading';
+  SDownloading = 'Downloading';
+  SError = 'Error';
+  SDone = 'Done';
+
 const
   CAudioBufferSize=64*1024;
 
@@ -218,6 +233,9 @@ const
 
   CRX5BasePitch=360;
   CRX5BaseSampleRate=25000;
+
+  CRX5BankToAddress:array[TRX5BankIndex] of Integer = (-1,0*CRX5BankSize,1*CRX5BankSize,2*CRX5BankSize,3*CRX5BankSize);
+  CRX5StatusText:array[TRX5ProgressStatus] of PResStringRec = (@SIdle,@SConnecting,@SAwaitingResponse,@SUploading,@SDownloading,@SError,@SDone);
 
 function GetPCMLength(ASize,ASampleRate,ABitsPerSample:Integer):TDateTime;
 function GetPCMSize(ALength:TDateTime;ASampleRate,ABitsPerSample:Integer):Integer;
@@ -231,11 +249,6 @@ procedure RX5_16To12Bit(AData1,AData2:Word; out AOut1,AOut2,AOut3:Byte);
 function RX5_Checksum(APtr:PByte;ASize:Integer):Word;
 
 implementation
-
-resourcestring
-  SNotABankFile = 'Not a valid RX5 bank file';
-  SUnknownFormat = 'Unknown format';
-  SPCMConvertError = 'PCM convert error';
 
 function GetPCMLength(ASize, ASampleRate, ABitsPerSample: Integer): TDateTime;
 begin
@@ -781,26 +794,39 @@ var hms:TMemoryStream;
     cs:Word;
 begin
   fs:=TFileStream.Create(AFileName,fmCreate or fmShareDenyWrite);
+  try
+    ExportToStream(fs);
+  finally
+    fs.Free;
+  end;
+end;
+
+procedure TRX5Bank.ExportToStream(AStream: TStream);
+var hms:TMemoryStream;
+    i,cnt:Integer;
+    header:array[0..CRX5BankHeaderSize-3] of Byte;
+    cs:Word;
+begin
   hms:=TMemoryStream.Create;
   try
     hms.WriteDWord($00000000);
     hms.WriteByte(FBankId);
     hms.WriteByte(Sounds.Count);
 
-    while fs.Size<CRX5BankHeaderSize do
-      fs.WriteQWord(0);
+    while AStream.Size<CRX5BankHeaderSize do
+      AStream.WriteQWord(0);
 
     for i:=0 to Sounds.Count-1 do
     begin
-      Sounds[i].ExportHeaderToStream(hms,fs.Position);
-      Sounds[i].ExportRawPCMToStream(fs);
-      cnt:=((fs.Size+255) shr 8) shl 8;
-      while fs.Size<cnt do
-        fs.WriteByte(0);
+      Sounds[i].ExportHeaderToStream(hms,AStream.Position);
+      Sounds[i].ExportRawPCMToStream(AStream);
+      cnt:=((AStream.Size+255) shr 8) shl 8;
+      while AStream.Size<cnt do
+        AStream.WriteByte(0);
     end;
 
-    while fs.Size<CRX5BankSize do
-      fs.WriteByte(0);
+    while AStream.Size<CRX5BankSize do
+      AStream.WriteByte(0);
 
     header[0]:=0;
     FillChar(header,Length(header),0);
@@ -814,12 +840,11 @@ begin
       cs:=RX5_Checksum(@header[0],Length(header));
     end;
 
-    fs.Seek(0,soFromBeginning);
-    fs.WriteBuffer(header,Length(header));
-    fs.WriteWord(cs);
+    AStream.Seek(0,soFromBeginning);
+    AStream.WriteBuffer(header,Length(header));
+    AStream.WriteWord(cs);
   finally
     hms.Free;
-    fs.Free;
   end;
 end;
 
@@ -833,21 +858,102 @@ end;
 
 { TRX5Cartridge }
 
-function TRX5Cartridge.GetPBank(Index: TRX5BankIndex): TRX5Bank;
+type
+  TRX5HIDHeader=packed record
+    ID:array[0..2] of AnsiChar;
+    Version:Byte;
+    Address:Cardinal;
+    Size:Cardinal;
+    Padding:array[12..63] of Byte;
+  end;
+
+function TRX5Cartridge.Progress(AStatus: TRX5ProgressStatus; APosition,
+  AMax: Integer): Boolean;
 begin
-  Assert(Index<>rbiNone);
-  Result:=FPBanks[Index];
+  Result:=True;
+  FStatus:=AStatus;
+  if Assigned(OnProgress) then Result:=OnProgress(APosition,AMax);
 end;
 
-procedure TRX5Cartridge.SetPBank(Index: TRX5BankIndex; AValue: TRX5Bank);
-begin
-  Assert(Index<>rbiNone);
-  FPBanks[Index]:=AValue;
-end;
+procedure TRX5Cartridge.Upload(APStream: TStream);
+const
+  CRX5HIDTimeout=1000; //ms
 
-procedure TRX5Cartridge.Upload;
+var res:Integer;
+    hdr:TRX5HIDHeader;
+    sendBuf,recvBuf:array[0..63] of Byte;
 begin
-  Assert(False,'TODO');
+  Assert(SizeOf(recvBuf)=SizeOf(hdr));
+
+  // try to connect until it succeeds
+
+  repeat
+    if not Progress(rpsConnecting,-1,-1) then Exit;
+    res:=rawhid_open(1, $6112, $5550, $FFAB, $0200);
+  until res>0;
+
+  // send header
+
+  hdr.ID[0]:='R';
+  hdr.ID[1]:='X';
+  hdr.ID[2]:='5';
+
+  hdr.Version:=1;
+
+  hdr.Address:=CRX5BankToAddress[BankIndex];
+  hdr.Size:=APStream.Size;
+
+  res:=rawhid_send(0,@hdr,SizeOf(hdr),CRX5HIDTimeout);
+
+  if res<=0 then
+  begin
+    Progress(rpsError,1,1);
+    Exit;
+  end;
+
+  // await ack (header sent back)
+
+  repeat
+    if not Progress(rpsAwaitingResponse,-1,-1) then Exit;
+    res:=rawhid_recv(0,@recvBuf,SizeOf(recvBuf),CRX5HIDTimeout);
+  until res>0;
+
+  if not CompareMem(@recvBuf,@hdr,sizeof(hdr)) then
+  begin
+    Progress(rpsError,1,1);
+    Exit;
+  end;
+
+  // program loop
+
+  repeat
+
+    // send packet
+
+    APStream.Read(sendBuf,SizeOf(sendBuf));
+    res:=rawhid_send(0,@sendBuf,SizeOf(sendBuf),CRX5HIDTimeout);
+
+    if res<=0 then
+    begin
+      Progress(rpsError,1,1);
+      Exit;
+    end;
+
+    // recv packet
+
+    res:=rawhid_recv(0,@recvBuf,SizeOf(recvBuf),CRX5HIDTimeout);
+
+    if (res<=0) or not CompareMem(@recvBuf,@sendBuf,sizeof(sendBuf)) then
+    begin
+      Progress(rpsError,1,1);
+      Exit;
+    end;
+
+    Progress(rpsUploading,APStream.Position,hdr.Size);
+
+  until APStream.Position>=hdr.Size;
+
+  Progress(rpsDone,1,1);
 end;
 
 { TRX5Library }

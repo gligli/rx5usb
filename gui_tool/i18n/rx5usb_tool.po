@@ -51,6 +51,34 @@ msgstr ""
 msgid "New bank"
 msgstr ""
 
+#: fprogram.scurrentbank
+msgid "(Current bank)"
+msgstr ""
+
+#: rx5classes.sawaitingresponse
+msgid "Awaiting response"
+msgstr ""
+
+#: rx5classes.sconnecting
+msgid "Connecting"
+msgstr ""
+
+#: rx5classes.sdone
+msgid "Done"
+msgstr ""
+
+#: rx5classes.sdownloading
+msgid "Downloading"
+msgstr ""
+
+#: rx5classes.serror
+msgid "Error"
+msgstr ""
+
+#: rx5classes.sidle
+msgid "Idle"
+msgstr ""
+
 #: rx5classes.snotabankfile
 msgid "Not a valid RX5 bank file"
 msgstr ""
@@ -61,6 +89,10 @@ msgstr ""
 
 #: rx5classes.sunknownformat
 msgid "Unknown format"
+msgstr ""
+
+#: rx5classes.suploading
+msgid "Uploading"
 msgstr ""
 
 #: tmainform.btabout.caption
@@ -96,6 +128,7 @@ msgid "Play loop"
 msgstr ""
 
 #: tmainform.btprogram.caption
+msgctxt "tmainform.btprogram.caption"
 msgid "Program"
 msgstr ""
 
@@ -278,5 +311,46 @@ msgstr ""
 
 #: tmainform.toolbutton5.caption
 msgid "ToolButton5"
+msgstr ""
+
+#: tprogramform.btcancel.caption
+msgid "Cancel"
+msgstr ""
+
+#: tprogramform.btprogram.caption
+msgctxt "TPROGRAMFORM.BTPROGRAM.CAPTION"
+msgid "Program"
+msgstr ""
+
+#: tprogramform.caption
+msgid "RX5USB programmer"
+msgstr ""
+
+#: tprogramform.cbtarget.text
+msgid "None (chose a side and a bank)"
+msgstr ""
+
+#: tprogramform.gbsettings.caption
+msgid "Settings"
+msgstr ""
+
+#: tprogramform.gbstatus.caption
+msgid "Status"
+msgstr ""
+
+#: tprogramform.label1.caption
+msgid "Source"
+msgstr ""
+
+#: tprogramform.label2.caption
+msgid "Target"
+msgstr ""
+
+#: tprogramform.llsource.caption
+msgid "llSource"
+msgstr ""
+
+#: tprogramform.llstatus.caption
+msgid "llStatus"
 msgstr ""
 

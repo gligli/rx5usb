@@ -110,6 +110,7 @@ type
     procedure btOpenClick(Sender: TObject);
     procedure btPlayAllClick(Sender: TObject);
     procedure btPlayLoopClick(Sender: TObject);
+    procedure btProgramClick(Sender: TObject);
     procedure btRemoveSoundClick(Sender: TObject);
     procedure btSaveClick(Sender: TObject);
     procedure btStopClick(Sender: TObject);
@@ -157,6 +158,9 @@ var
   MainForm: TMainForm;
 
 implementation
+
+uses
+  fprogram;
 
 const
     CMaxPreviewChartPoints=10000;
@@ -253,6 +257,31 @@ end;
 procedure TMainForm.btPlayLoopClick(Sender: TObject);
 begin
   Play(True);
+end;
+
+procedure TMainForm.btProgramClick(Sender: TObject);
+var s:TStream;
+begin
+  if not FChanged and FileExists(FFileName) then
+  begin
+    s:=TFileStream.Create(FFileName,fmOpenRead);
+    try
+      TProgramForm.Popup(s,FFileName)
+    finally
+      s.Free;
+    end;
+  end
+  else
+  begin
+    s:=TMemoryStream.Create;
+    try
+      FBank.ExportToStream(s);
+      s.Seek(0,soFromBeginning);
+      TProgramForm.Popup(s,'')
+    finally
+      s.Free;
+    end;
+  end;
 end;
 
 procedure TMainForm.btAddSoundClick(Sender: TObject);
