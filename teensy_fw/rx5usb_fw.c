@@ -41,88 +41,86 @@ int main(void)
 	usb_init();
 	while (!usb_configured()) /* wait */ ;
 
-	// Wait an extra second for the PC's operating system to load drivers
-	// and do whatever it does to actually be ready for input
-	_delay_ms(1000);
-
-	print("RX5USB chip program mode\n");
-	
-	print("wait for header...\n");
-	
-	memset(send_buffer,0,sizeof(send_buffer));
-	
-	send_buffer[0]='R'; send_buffer[1]='X'; send_buffer[2]='5';
-	send_buffer[3]=RX5USB_FW_VERSION;
-		
 	for(;;)
 	{
-		r = usb_rawhid_recv(recv_buffer,0);
-		
-		if (r > 0 && recv_buffer[0]=='R'&& recv_buffer[1]=='X'&& recv_buffer[2]=='5' && recv_buffer[3]==RX5USB_FW_VERSION)
+		// Wait an extra second for the PC's operating system to load drivers
+		// and do whatever it does to actually be ready for input
+		_delay_ms(1000);
+
+		print("RX5USB chip program mode\n");
+
+		print("wait for header...\n");
+
+		for(;;)
 		{
-			flash_addr=*(unsigned long*)&recv_buffer[4];
-			flash_size=*(unsigned long*)&recv_buffer[8];
-			break;
-		}
-
-		_delay_ms(100);
-	}
-
-	print("flash start...\n");
-		
-	flash_setEnable(1);
-
-	print("chip id...\n");
-	flash_printId();
-
-	print("chip erase...\n");
-	flash_chipErase();
-
-	print("chip program...\n");
-	
-	// resend the header, to ack it
-	
-	do
-		r = usb_rawhid_send(recv_buffer,0);
-	while (r<=0);
-	
-	flash_pos=0;
-	
-	while(flash_pos<flash_size)
-	{
-		// get packet
-		
-		do
 			r = usb_rawhid_recv(recv_buffer,0);
-		while (r<=0);
 
-		// program it
-		
-		for(i=0;i<sizeof(recv_buffer);++i)
-		{
-			flash_programByte(flash_pos,recv_buffer[i]);
-			++flash_pos;
+			if (r > 0 && recv_buffer[0]=='R'&& recv_buffer[1]=='X'&& recv_buffer[2]=='5' && recv_buffer[3]==RX5USB_FW_VERSION)
+			{
+				flash_addr=*(unsigned long*)&recv_buffer[4];
+				flash_size=*(unsigned long*)&recv_buffer[8];
+				break;
+			}
+
+			_delay_ms(100);
 		}
 
-		// send what we red back from flash
+		print("flash start...\n");
 
-		for(i=0;i<sizeof(send_buffer);++i)
-		{
-			send_buffer[i]=flash_getByte(flash_pos-sizeof(recv_buffer)+i);
-		}
-		
+		flash_setEnable(1);
+
+		print("chip id...\n");
+		flash_printId();
+
+		print("chip erase...\n");
+		flash_chipErase();
+
+		print("chip program...\n");
+
+		// resend the header, to ack it
+
 		do
 			r = usb_rawhid_send(recv_buffer,0);
 		while (r<=0);
-		
-		if((flash_pos&0x7ff)==0)
+
+		flash_pos=0;
+
+		while(flash_pos<flash_size)
 		{
-			print(".");
+			// get packet
+
+			do
+				r = usb_rawhid_recv(recv_buffer,0);
+			while (r<=0);
+
+			// program it
+
+			for(i=0;i<sizeof(recv_buffer);++i)
+			{
+				flash_programByte(flash_pos,recv_buffer[i]);
+				++flash_pos;
+			}
+
+			// send what we red back from flash
+
+			for(i=0;i<sizeof(send_buffer);++i)
+			{
+				send_buffer[i]=flash_getByte(flash_pos-sizeof(recv_buffer)+i);
+			}
+
+			do
+				r = usb_rawhid_send(recv_buffer,0);
+			while (r<=0);
+
+			if((flash_pos&0x7ff)==0)
+			{
+				print(".");
+			}
 		}
+
+		print("all done!\n");
 	}
 	
-	print("all done!\n");
-	
-	CPU_PRESCALE(CPU_1MHz);
+	CPU_PRESCALE(CPU_62kHz);
 	for(;;);	
 }
