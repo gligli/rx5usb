@@ -54,13 +54,21 @@ resourcestring
   SFailure='%s'+sLineBreak+sLineBreak+'Programming was unsuccessful.'+sLineBreak+sLineBreak+
            'You should unplug the cartridge and plug it again before any other attempt.';
 
+  STargetItems='None (chose a side and a bank)'+sLineBreak+
+              'Side 1 Bank A'+sLineBreak+
+              'Side 1 Bank B'+sLineBreak+
+              'Side 2 Bank A'+sLineBreak+
+              'Side 2 Bank B'+sLineBreak;
+
 { TProgramForm }
 
 procedure TProgramForm.FormCreate(Sender: TObject);
 begin
   FCartridge:=TRX5Cartridge.Create;
   FCartridge.OnProgress:=@RX5Progress;
-  FCartridge.BankIndex:=rbiNone;
+
+  cbTarget.Items.Text:=STargetItems;
+  cbTarget.ItemIndex:=0;
 end;
 
 procedure TProgramForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);

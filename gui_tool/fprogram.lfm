@@ -45,18 +45,9 @@ object ProgramForm: TProgramForm
       Top = 32
       Width = 280
       ItemHeight = 15
-      ItemIndex = 0
-      Items.Strings = (
-        'None (chose a side and a bank)'
-        'Side 1 Bank A'
-        'Side 1 Bank B'
-        'Side 2 Bank A'
-        'Side 2 Bank B'
-      )
       OnChange = cbTargetChange
       Style = csDropDownList
       TabOrder = 0
-      Text = 'None (chose a side and a bank)'
     end
     object llSource: TLabel
       Left = 94

@@ -13,62 +13,25 @@ msgstr ""
 
 #: fmain.sabout
 #, fuzzy
-#| msgid ""
-#| "Yamaha RX5 waveform bank editor /\n"
-#| "RX5USB cartridge programmer\n"
-#| "\n"
-#| "Version: 0.02 alpha\n"
-#| "Coder: gligli\n"
-#| "License: GNU GPL\n"
-#| "Yamaha RX5 waveform bank editor /\n"
-#| "RX5USB cartridge programmer\n"
-#| "\n"
-#| "Version: %s\n"
-#| "Coder: gligli\n"
-#| "License: GNU GPL\n"
-#| "Yamaha RX5 waveform bank editor /\n"
-#| "RX5USB cartridge programmer\n"
-#| "\n"
-#| "Version: %s\n"
-#| "Coder: gligli\n"
-#| "License: GNU GPL\n"
-#| "Yamaha RX5 waveform bank editor /\n"
-#| "RX5USB cartridge programmer\n"
-#| "\n"
-#| "Version: %s\n"
-#| "Coder: gligli\n"
-#| "License: GNU GPL\n"
-#| "Yamaha RX5 waveform bank editor /\n"
-#| "RX5USB cartridge programmer\n"
-#| "\n"
-#| "Version: %s\n"
-#| "Coder: gligli\n"
-#| "License: GNU GPL\n"
-#| "Yamaha RX5 waveform bank editor /\n"
-#| "RX5USB cartridge programmer\n"
-#| "\n"
-#| "Version: %s\n"
-#| "Coder: gligli\n"
-#| "License: GNU GPL\n"
-#| "Yamaha RX5 waveform bank editor /\n"
-#| "RX5USB cartridge programmer\n"
-#| "\n"
-#| "Version: %s\n"
-#| "Coder: gligli\n"
-#| "License: GNU GPL\n"
-#| "Yamaha RX5 waveform bank editor /\n"
-#| "RX5USB cartridge programmer\n"
-#| "\n"
-#| "Version: %s\n"
-#| "Coder: gligli\n"
-#| "License: GNU GPL\n"
-#| "Yamaha RX5 waveform bank editor /\n"
-#| "RX5USB cartridge programmer\n"
-#| "\n"
-#| "Version: %s\n"
-#| "Coder: gligli\n"
-#| "License: GNU GPL\n"
 msgid ""
+"Yamaha RX5 waveform bank editor /\n"
+"RX5USB cartridge programmer\n"
+"\n"
+"Version: 0.02 alpha\n"
+"Coder: gligli\n"
+"License: GNU GPL\n"
+"Yamaha RX5 waveform bank editor /\n"
+"RX5USB cartridge programmer\n"
+"\n"
+"Version: %s\n"
+"Coder: gligli\n"
+"License: GNU GPL\n"
+"Yamaha RX5 waveform bank editor /\n"
+"RX5USB cartridge programmer\n"
+"\n"
+"Version: %s\n"
+"Coder: gligli\n"
+"License: GNU GPL\n"
 "Yamaha RX5 waveform bank editor /\n"
 "RX5USB cartridge programmer\n"
 "\n"
@@ -97,7 +60,7 @@ msgstr "%s - %s"
 
 #: fmain.smodified
 msgid " (modified)"
-msgstr "(modifié)"
+msgstr " (modifiée)"
 
 #: fmain.ssample
 msgid "New sample"
@@ -125,7 +88,7 @@ msgstr "Nouvelle banque de sons"
 
 #: fprogram.scurrentbank
 msgid "(Current bank)"
-msgstr "(Banque de son courante)"
+msgstr "(Banque de sons en cours d'édition)"
 
 #: fprogram.sfailure
 msgid ""
@@ -137,9 +100,10 @@ msgid ""
 msgstr ""
 "%s\n"
 "\n"
-"La programmarion a échouée.\n"
+"Programmation échouée.\n"
 "\n"
-"Vous devriez débrancher puis rebrancher la cartouche avant tout nouvel essai.\n"
+"Vous devriez débrancher puis rebrancher la cartouche avant tout nouvel "
+"essai.\n"
 
 #: fprogram.ssuccess
 msgid ""
@@ -147,9 +111,9 @@ msgid ""
 "\n"
 "Get ready for some serious RX5 groove ;)\n"
 msgstr ""
-"La programmation a réussie!\n"
+"Programmation réussie!\n"
 "\n"
-"Préparez vous à de furieux grooves sur la RX5 ;)\n"
+"Préparez vous pour de furieux grooves sur la RX5 ;)\n"
 
 #: fprogram.stargetitems
 msgid ""
@@ -159,6 +123,11 @@ msgid ""
 "Side 2 Bank A\n"
 "Side 2 Bank B\n"
 msgstr ""
+"Aucune (choisissez une face et une banque)\n"
+"Face 1 Banque A\n"
+"Face 1 Banque B\n"
+"Face 2 Banque A\n"
+"Face 2 Banque B\n"
 
 #: rx5classes.sawaitingresponse
 msgid "Awaiting response..."
@@ -194,11 +163,11 @@ msgstr "Pas une banque de sons RX5 valide"
 
 #: rx5classes.spcmconverterror
 msgid "PCM convert error"
-msgstr "Erreur pendant la conversion PCM"
+msgstr "Erreur pendant la convertion PCM"
 
 #: rx5classes.ssound
 msgid "Sound"
-msgstr ""
+msgstr "Son"
 
 #: rx5classes.sunknownformat
 msgid "Unknown format"
@@ -275,11 +244,14 @@ msgstr "Enveloppe (plus haut veut dire plus lent)"
 
 #: tmainform.gbloop.caption
 msgid "Looping (left click / right click on waveform sets loop start / end)"
-msgstr "Bouclage (un clic gauche / clic droit sur la forme d'onde règle le début / la fin de la boucle)"
+msgstr ""
+"Bouclage (un clic gauche / clic droit sur la forme d'onde règle le début / "
+"la fin de la boucle)"
 
 #: tmainform.gbquality.caption
 msgid "PCM quality (sample rate depends on base pitch)"
-msgstr "Qualité PCM (Le taux d'échantillonage dépends de la hauteur de base)"
+msgstr ""
+"Qualité PCM (la fréquence d'échantillonage dépends de la hauteur initiale)"
 
 #: tmainform.label1.caption
 msgid "Loop start"
@@ -325,7 +297,7 @@ msgstr "Nom"
 #: tmainform.label6.caption
 msgctxt "TMAINFORM.LABEL6.CAPTION"
 msgid "Base pitch"
-msgstr "Hauteur de base"
+msgstr "Hauteur initiale"
 
 #: tmainform.label7.caption
 msgctxt "TMAINFORM.LABEL7.CAPTION"
@@ -335,7 +307,7 @@ msgstr "Canal"
 #: tmainform.label8.caption
 msgctxt "tmainform.label8.caption"
 msgid "Sample rate"
-msgstr "Taux d'échantillonage"
+msgstr "Echantillonage"
 
 #: tmainform.label9.caption
 msgid "Decay 1 (rate)"
@@ -378,7 +350,7 @@ msgstr "Format"
 #: tmainform.lvsounds.columns[3].caption
 msgctxt "tmainform.lvsounds.columns[3].caption"
 msgid "Sample rate"
-msgstr "Taux d'échantillonage"
+msgstr "Echantillonage"
 
 #: tmainform.lvsounds.columns[4].caption
 msgid "Length"
@@ -412,7 +384,7 @@ msgstr "8 bits"
 
 #: tmainform.sdbank.title
 msgid "Save bank as"
-msgstr "Sauvegarder la banque de sons en tant que"
+msgstr "Sauvegarder la banque de sons sous"
 
 #: tmainform.tbtop.caption
 msgid "tbTop"
@@ -443,6 +415,10 @@ msgstr "Programmer"
 msgid "RX5USB programmer"
 msgstr "Programmateur de RX5USB"
 
+#: tprogramform.cbtarget.text
+msgid "None (chose a side and a bank)"
+msgstr "Aucune (choisissez une face et une banque)"
+
 #: tprogramform.gbsettings.caption
 msgid "Settings"
 msgstr "Réglages"
@@ -466,4 +442,3 @@ msgstr "llSource"
 #: tprogramform.llstatus.caption
 msgid "llStatus"
 msgstr "llStatus"
-

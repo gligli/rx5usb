@@ -164,6 +164,7 @@ uses
 
 const
     CMaxPreviewChartPoints=10000;
+    CVersion='0.90 beta';
 
 resourcestring
   SUnableToPlay='Unable to play sample';
@@ -181,7 +182,7 @@ resourcestring
    'Yamaha RX5 waveform bank editor /'+sLineBreak+
    'RX5USB cartridge programmer'+sLineBreak+
    sLineBreak+
-   'Version: 0.02 alpha'+sLineBreak+
+   'Version: %s'+sLineBreak+
    'Coder: gligli'+sLineBreak+
    'License: GNU GPL';
 
@@ -313,7 +314,7 @@ end;
 
 procedure TMainForm.btAboutClick(Sender: TObject);
 begin
-  Application.MessageBox(PChar(SAbout),PChar(Application.Title),MB_ICONINFORMATION);
+  Application.MessageBox(PChar(Format(SAbout,[CVersion])),PChar(Application.Title),MB_ICONINFORMATION);
 end;
 
 procedure TMainForm.btAddManySoundsClick(Sender: TObject);

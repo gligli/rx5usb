@@ -222,6 +222,7 @@ resourcestring
   SError = 'Error!';
   SDone = 'Done!';
   SInterrupted = 'Interrupted!';
+  SSound='Sound';
 
 const
   CAudioBufferSize=64*1024;
@@ -394,7 +395,7 @@ begin
 
   FUnk:=$63;
 
-  FName:='Sample';
+  FName:=SSound;
 end;
 
 destructor TRX5Sound.Destroy;
@@ -788,11 +789,7 @@ begin
 end;
 
 procedure TRX5Bank.ExportToFile(AFileName: String);
-var hms:TMemoryStream;
-    fs:TFileStream;
-    i,cnt:Integer;
-    header:array[0..CRX5BankHeaderSize-3] of Byte;
-    cs:Word;
+var fs:TFileStream;
 begin
   fs:=TFileStream.Create(AFileName,fmCreate or fmShareDenyWrite);
   try
@@ -886,6 +883,8 @@ var res:Integer;
     sendBuf,recvBuf:array[0..63] of Byte;
 begin
   Assert(SizeOf(recvBuf)=SizeOf(hdr));
+
+  sendBuf[0]:=0;
 
   // try to connect until it succeeds
 

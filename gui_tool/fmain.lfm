@@ -150,9 +150,8 @@ object MainForm: TMainForm
         Width = 100
       end    
       item
-        Alignment = taCenter
         Caption = 'From'
-        Width = 100
+        Width = 150
       end    
       item
         Alignment = taCenter
@@ -213,7 +212,7 @@ object MainForm: TMainForm
       Left = 8
       Height = 30
       Top = 48
-      Width = 127
+      Width = 136
       Caption = 'Play'
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -258,7 +257,7 @@ object MainForm: TMainForm
       Left = 8
       Height = 30
       Top = 80
-      Width = 127
+      Width = 136
       Caption = 'Play loop'
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -303,7 +302,7 @@ object MainForm: TMainForm
       Left = 8
       Height = 30
       Top = 112
-      Width = 127
+      Width = 136
       Caption = 'Stop'
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -348,7 +347,7 @@ object MainForm: TMainForm
       Left = 8
       Height = 30
       Top = 8
-      Width = 127
+      Width = 136
       Caption = 'Import sample'
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -391,10 +390,10 @@ object MainForm: TMainForm
     end
     object chartWave: TChart
       Cursor = crHandPoint
-      Left = 144
+      Left = 152
       Height = 134
       Top = 8
-      Width = 830
+      Width = 822
       AllowZoom = False
       AxisList = <      
         item
@@ -445,7 +444,7 @@ object MainForm: TMainForm
       ClientWidth = 596
       TabOrder = 7
       object seLoopStart: TSpinEdit
-        Left = 214
+        Left = 230
         Height = 23
         Top = 4
         Width = 88
@@ -453,7 +452,7 @@ object MainForm: TMainForm
         TabOrder = 1
       end
       object seLoopEnd: TSpinEdit
-        Left = 462
+        Left = 478
         Height = 23
         Top = 4
         Width = 88
@@ -530,7 +529,7 @@ object MainForm: TMainForm
         ParentColor = False
       end
       object llSampleRate: TLabel
-        Left = 462
+        Left = 478
         Height = 16
         Top = 8
         Width = 88
@@ -540,7 +539,7 @@ object MainForm: TMainForm
         ParentColor = False
       end
       object Label14: TLabel
-        Left = 286
+        Left = 294
         Height = 16
         Top = 8
         Width = 55
@@ -548,10 +547,10 @@ object MainForm: TMainForm
         ParentColor = False
       end
       object sePitch: TFloatSpinEdit
-        Left = 214
+        Left = 230
         Height = 23
         Top = 4
-        Width = 64
+        Width = 56
         DecimalPlaces = 1
         Increment = 1
         MaxValue = 24

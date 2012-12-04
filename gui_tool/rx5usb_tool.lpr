@@ -27,13 +27,17 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, FMain, rx5classes, tachartlazaruspkg, rawhid, fprogram
-  { you can add units after this };
+  Forms, FMain, rx5classes, tachartlazaruspkg, rawhid, fprogram,
+  sysutils,
+  DefaultTranslator;
 
 {$R *.res}
 
+resourcestring
+  SRX5USBTool='RX5USB tool';
+
 begin
-  Application.Title:='RX5USB tool';
+  Application.Title:=SRX5USBTool;
   RequireDerivedFormResource := True;
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
