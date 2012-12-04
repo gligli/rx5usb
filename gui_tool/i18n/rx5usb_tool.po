@@ -55,28 +55,48 @@ msgstr ""
 msgid "(Current bank)"
 msgstr ""
 
+#: fprogram.sfailure
+msgid ""
+"%s\n"
+"\n"
+"Programming was unsuccessful.\n"
+"\n"
+"You should unplug the cartridge and plug it again before any other attempt.\n"
+msgstr ""
+
+#: fprogram.ssuccess
+msgid ""
+"Programming was successful!\n"
+"\n"
+"Get ready for some serious RX5 groove ;)\n"
+msgstr ""
+
 #: rx5classes.sawaitingresponse
-msgid "Awaiting response"
+msgid "Awaiting response..."
 msgstr ""
 
 #: rx5classes.sconnecting
-msgid "Connecting"
+msgid "Connecting..."
 msgstr ""
 
 #: rx5classes.sdone
-msgid "Done"
+msgid "Done!"
 msgstr ""
 
 #: rx5classes.sdownloading
-msgid "Downloading"
+msgid "Downloading..."
 msgstr ""
 
 #: rx5classes.serror
-msgid "Error"
+msgid "Error!"
 msgstr ""
 
 #: rx5classes.sidle
-msgid "Idle"
+msgid "(Idle)"
+msgstr ""
+
+#: rx5classes.sinterrupted
+msgid "Interrupted!"
 msgstr ""
 
 #: rx5classes.snotabankfile
@@ -92,7 +112,7 @@ msgid "Unknown format"
 msgstr ""
 
 #: rx5classes.suploading
-msgid "Uploading"
+msgid "Uploading..."
 msgstr ""
 
 #: tmainform.btabout.caption

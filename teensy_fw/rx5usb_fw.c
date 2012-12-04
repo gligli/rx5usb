@@ -79,8 +79,13 @@ int main(void)
 
 		// resend the header, to ack it
 
+		memcpy(send_buffer,recv_buffer,sizeof(recv_buffer));
+		
+		send_buffer[12]='O';
+		send_buffer[13]='K';
+		
 		do
-			r = usb_rawhid_send(recv_buffer,0);
+			r = usb_rawhid_send(send_buffer,0);
 		while (r<=0);
 
 		flash_pos=0;
@@ -119,6 +124,8 @@ int main(void)
 		}
 
 		print("all done!\n");
+
+		flash_setEnable(0);
 	}
 	
 	CPU_PRESCALE(CPU_62kHz);

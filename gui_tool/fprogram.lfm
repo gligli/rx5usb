@@ -157,6 +157,7 @@ object ProgramForm: TProgramForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
     ModalResult = 2
+    OnClick = btCancelClick
     TabOrder = 2
   end
   object gbStatus: TGroupBox

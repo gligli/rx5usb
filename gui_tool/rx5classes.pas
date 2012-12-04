@@ -33,7 +33,7 @@ type
     Text:String;
   end;
 
-  TRX5ProgressStatus=(rpsIdle=0,rpsConnecting=1,rpsAwaitingResponse=2,rpsUploading=3,rpsDownloading=4,rpsError=5,rpsDone=6);
+  TRX5ProgressStatus=(rpsIdle=0,rpsConnecting=1,rpsAwaitingResponse=2,rpsUploading=3,rpsDownloading=4,rpsError=5,rpsDone=6,rpsInterrupted=7);
   TRX5BankIndex=(rbiNone=0,rbiSide1BankA=1,rbiSide1BankB=2,rbiSide2BankA=3,rbiSide2BankB=4);
   TRX5SoundFormat=(rsfNone=0,rsfPCM8=1,rsfPCM12=2);
 
@@ -214,13 +214,14 @@ resourcestring
   SUnknownFormat = 'Unknown format';
   SPCMConvertError = 'PCM convert error';
 
-  SIdle = 'Idle';
-  SConnecting = 'Connecting';
-  SAwaitingResponse = 'Awaiting response';
-  SUploading = 'Uploading';
-  SDownloading = 'Downloading';
-  SError = 'Error';
-  SDone = 'Done';
+  SIdle = '(Idle)';
+  SConnecting = 'Connecting...';
+  SAwaitingResponse = 'Awaiting response...';
+  SUploading = 'Uploading...';
+  SDownloading = 'Downloading...';
+  SError = 'Error!';
+  SDone = 'Done!';
+  SInterrupted = 'Interrupted!';
 
 const
   CAudioBufferSize=64*1024;
@@ -235,7 +236,7 @@ const
   CRX5BaseSampleRate=25000;
 
   CRX5BankToAddress:array[TRX5BankIndex] of Integer = (-1,0*CRX5BankSize,1*CRX5BankSize,2*CRX5BankSize,3*CRX5BankSize);
-  CRX5StatusText:array[TRX5ProgressStatus] of PResStringRec = (@SIdle,@SConnecting,@SAwaitingResponse,@SUploading,@SDownloading,@SError,@SDone);
+  CRX5StatusText:array[TRX5ProgressStatus] of PResStringRec = (@SIdle,@SConnecting,@SAwaitingResponse,@SUploading,@SDownloading,@SError,@SDone,@SInterrupted);
 
 function GetPCMLength(ASize,ASampleRate,ABitsPerSample:Integer):TDateTime;
 function GetPCMSize(ALength:TDateTime;ASampleRate,ABitsPerSample:Integer):Integer;
@@ -864,7 +865,8 @@ type
     Version:Byte;
     Address:Cardinal;
     Size:Cardinal;
-    Padding:array[12..63] of Byte;
+    Response:array[0..1] of AnsiChar;
+    Padding:array[14..63] of Byte;
   end;
 
 function TRX5Cartridge.Progress(AStatus: TRX5ProgressStatus; APosition,
@@ -888,50 +890,30 @@ begin
   // try to connect until it succeeds
 
   repeat
-    if not Progress(rpsConnecting,-1,-1) then Exit;
+    if not Progress(rpsConnecting,-1,-1) then
+    begin
+      FStatus:=rpsInterrupted;
+      Exit;
+    end;
     res:=rawhid_open(1, $6112, $5550, $FFAB, $0200);
   until res>0;
 
-  // send header
+  try
+    // send header
 
-  hdr.ID[0]:='R';
-  hdr.ID[1]:='X';
-  hdr.ID[2]:='5';
+    hdr.ID[0]:='R';
+    hdr.ID[1]:='X';
+    hdr.ID[2]:='5';
 
-  hdr.Version:=1;
+    hdr.Version:=1;
 
-  hdr.Address:=CRX5BankToAddress[BankIndex];
-  hdr.Size:=APStream.Size;
+    hdr.Response[0]:='?';
+    hdr.Response[1]:='?';
 
-  res:=rawhid_send(0,@hdr,SizeOf(hdr),CRX5HIDTimeout);
+    hdr.Address:=CRX5BankToAddress[BankIndex];
+    hdr.Size:=APStream.Size;
 
-  if res<=0 then
-  begin
-    Progress(rpsError,1,1);
-    Exit;
-  end;
-
-  // await ack (header sent back)
-
-  repeat
-    if not Progress(rpsAwaitingResponse,-1,-1) then Exit;
-    res:=rawhid_recv(0,@recvBuf,SizeOf(recvBuf),CRX5HIDTimeout);
-  until res>0;
-
-  if not CompareMem(@recvBuf,@hdr,sizeof(hdr)) then
-  begin
-    Progress(rpsError,1,1);
-    Exit;
-  end;
-
-  // program loop
-
-  repeat
-
-    // send packet
-
-    APStream.Read(sendBuf,SizeOf(sendBuf));
-    res:=rawhid_send(0,@sendBuf,SizeOf(sendBuf),CRX5HIDTimeout);
+    res:=rawhid_send(0,@hdr,SizeOf(hdr),CRX5HIDTimeout);
 
     if res<=0 then
     begin
@@ -939,21 +921,64 @@ begin
       Exit;
     end;
 
-    // recv packet
+    // await ack (header sent back)
 
-    res:=rawhid_recv(0,@recvBuf,SizeOf(recvBuf),CRX5HIDTimeout);
+    hdr.Response[0]:='O';
+    hdr.Response[1]:='K';
 
-    if (res<=0) or not CompareMem(@recvBuf,@sendBuf,sizeof(sendBuf)) then
+    repeat
+      if not Progress(rpsAwaitingResponse,-1,-1) then
+      begin
+        FStatus:=rpsInterrupted;
+        Exit;
+      end;
+      res:=rawhid_recv(0,@recvBuf,SizeOf(recvBuf),CRX5HIDTimeout);
+    until res>0;
+
+    if not CompareMem(@recvBuf,@hdr,sizeof(hdr)) then
     begin
       Progress(rpsError,1,1);
       Exit;
     end;
 
-    Progress(rpsUploading,APStream.Position,hdr.Size);
+    // program loop
 
-  until APStream.Position>=hdr.Size;
+    repeat
 
-  Progress(rpsDone,1,1);
+      // send packet
+
+      APStream.Read(sendBuf,SizeOf(sendBuf));
+      res:=rawhid_send(0,@sendBuf,SizeOf(sendBuf),CRX5HIDTimeout);
+
+      if res<=0 then
+      begin
+        Progress(rpsError,1,1);
+        Exit;
+      end;
+
+      // recv packet
+
+      res:=rawhid_recv(0,@recvBuf,SizeOf(recvBuf),CRX5HIDTimeout);
+
+      if (res<=0) or not CompareMem(@recvBuf,@sendBuf,sizeof(sendBuf)) then
+      begin
+        Progress(rpsError,1,1);
+        Exit;
+      end;
+
+      if (APStream.Position and 1023)=0 then
+        if not Progress(rpsUploading,APStream.Position,hdr.Size) then
+        begin
+          FStatus:=rpsInterrupted;
+          Exit;
+        end;
+
+    until APStream.Position>=hdr.Size;
+
+    Progress(rpsDone,1,1);
+  finally
+    rawhid_close(0);
+  end;
 end;
 
 { TRX5Library }

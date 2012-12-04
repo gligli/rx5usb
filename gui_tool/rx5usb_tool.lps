@@ -9,11 +9,11 @@
         <Filename Value="rx5usb_tool.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="rx5usb_tool"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="40"/>
-        <UsageCount Value="76"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -25,9 +25,9 @@
         <UnitName Value="FMain"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="242"/>
+        <TopLine Value="447"/>
         <CursorPos X="89" Y="250"/>
-        <UsageCount Value="115"/>
+        <UsageCount Value="116"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -38,9 +38,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="906"/>
-        <CursorPos X="25" Y="956"/>
-        <UsageCount Value="115"/>
+        <TopLine Value="869"/>
+        <CursorPos X="42" Y="965"/>
+        <UsageCount Value="116"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -50,8 +50,8 @@
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="54" Y="15"/>
-        <UsageCount Value="23"/>
+        <CursorPos X="52" Y="6"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -63,9 +63,9 @@
         <UnitName Value="fprogram"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="58"/>
-        <CursorPos X="42" Y="104"/>
-        <UsageCount Value="23"/>
+        <TopLine Value="29"/>
+        <CursorPos X="61" Y="53"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -173,12 +173,10 @@
       <Unit18>
         <Filename Value="C:\lazarus\lcl\filectrl.pp"/>
         <UnitName Value="FileCtrl"/>
-        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="199"/>
         <CursorPos X="1" Y="1"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit18>
       <Unit19>
         <Filename Value="F:\Download\lazarus\acs-2.3\Src\Common\ACS_Procs.pas"/>
@@ -441,123 +439,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="fprogram.pas"/>
-        <Caret Line="61" Column="1" TopLine="26"/>
+        <Caret Line="55" Column="27" TopLine="24"/>
       </Position1>
       <Position2>
         <Filename Value="fprogram.pas"/>
-        <Caret Line="37" Column="1" TopLine="9"/>
+        <Caret Line="64" Column="1" TopLine="24"/>
       </Position2>
       <Position3>
-        <Filename Value="fprogram.pas"/>
-        <Caret Line="55" Column="37" TopLine="32"/>
+        <Filename Value="fmain.pas"/>
+        <Caret Line="264" Column="1" TopLine="256"/>
       </Position3>
       <Position4>
-        <Filename Value="fprogram.pas"/>
-        <Caret Line="99" Column="15" TopLine="56"/>
+        <Filename Value="fmain.pas"/>
+        <Caret Line="265" Column="1" TopLine="256"/>
       </Position4>
       <Position5>
         <Filename Value="fprogram.pas"/>
-        <Caret Line="55" Column="27" TopLine="24"/>
+        <Caret Line="110" Column="1" TopLine="63"/>
       </Position5>
       <Position6>
         <Filename Value="fprogram.pas"/>
-        <Caret Line="64" Column="1" TopLine="24"/>
+        <Caret Line="111" Column="1" TopLine="63"/>
       </Position6>
       <Position7>
-        <Filename Value="fmain.pas"/>
-        <Caret Line="264" Column="1" TopLine="256"/>
+        <Filename Value="fprogram.pas"/>
+        <Caret Line="112" Column="1" TopLine="63"/>
       </Position7>
       <Position8>
-        <Filename Value="fmain.pas"/>
-        <Caret Line="265" Column="1" TopLine="256"/>
+        <Filename Value="fprogram.pas"/>
+        <Caret Line="113" Column="1" TopLine="63"/>
       </Position8>
       <Position9>
         <Filename Value="fprogram.pas"/>
-        <Caret Line="110" Column="1" TopLine="63"/>
+        <Caret Line="114" Column="1" TopLine="63"/>
       </Position9>
       <Position10>
         <Filename Value="fprogram.pas"/>
-        <Caret Line="111" Column="1" TopLine="63"/>
+        <Caret Line="121" Column="1" TopLine="64"/>
       </Position10>
       <Position11>
         <Filename Value="fprogram.pas"/>
-        <Caret Line="112" Column="1" TopLine="63"/>
+        <Caret Line="58" Column="1" TopLine="30"/>
       </Position11>
       <Position12>
-        <Filename Value="fprogram.pas"/>
-        <Caret Line="113" Column="1" TopLine="63"/>
-      </Position12>
-      <Position13>
-        <Filename Value="fprogram.pas"/>
-        <Caret Line="114" Column="1" TopLine="63"/>
-      </Position13>
-      <Position14>
-        <Filename Value="fprogram.pas"/>
-        <Caret Line="121" Column="1" TopLine="64"/>
-      </Position14>
-      <Position15>
-        <Filename Value="fprogram.pas"/>
-        <Caret Line="58" Column="1" TopLine="30"/>
-      </Position15>
-      <Position16>
         <Filename Value="rx5classes.pas"/>
         <Caret Line="161" Column="1" TopLine="129"/>
-      </Position16>
-      <Position17>
+      </Position12>
+      <Position13>
         <Filename Value="rx5classes.pas"/>
         <Caret Line="864" Column="14" TopLine="835"/>
-      </Position17>
-      <Position18>
+      </Position13>
+      <Position14>
         <Filename Value="rx5classes.pas"/>
         <Caret Line="859" Column="20" TopLine="826"/>
-      </Position18>
-      <Position19>
+      </Position14>
+      <Position15>
         <Filename Value="rx5classes.pas"/>
         <Caret Line="863" Column="18" TopLine="833"/>
+      </Position15>
+      <Position16>
+        <Filename Value="fprogram.pas"/>
+        <Caret Line="43" Column="43" TopLine="18"/>
+      </Position16>
+      <Position17>
+        <Filename Value="fprogram.pas"/>
+        <Caret Line="42" Column="28" TopLine="1"/>
+      </Position17>
+      <Position18>
+        <Filename Value="fmain.pas"/>
+        <Caret Line="279" Column="41" TopLine="172"/>
+      </Position18>
+      <Position19>
+        <Filename Value="fmain.pas"/>
+        <Caret Line="272" Column="12" TopLine="237"/>
       </Position19>
       <Position20>
         <Filename Value="fprogram.pas"/>
-        <Caret Line="43" Column="43" TopLine="18"/>
+        <Caret Line="119" Column="1" TopLine="67"/>
       </Position20>
       <Position21>
-        <Filename Value="fprogram.pas"/>
-        <Caret Line="42" Column="28" TopLine="1"/>
+        <Filename Value="rx5classes.pas"/>
+        <Caret Line="870" Column="1" TopLine="827"/>
       </Position21>
       <Position22>
-        <Filename Value="fmain.pas"/>
-        <Caret Line="279" Column="41" TopLine="172"/>
+        <Filename Value="rx5classes.pas"/>
+        <Caret Line="865" Column="19" TopLine="835"/>
       </Position22>
       <Position23>
-        <Filename Value="fmain.pas"/>
-        <Caret Line="272" Column="12" TopLine="237"/>
+        <Filename Value="rx5classes.pas"/>
+        <Caret Line="891" Column="7" TopLine="846"/>
       </Position23>
       <Position24>
-        <Filename Value="fprogram.pas"/>
-        <Caret Line="119" Column="1" TopLine="67"/>
+        <Filename Value="rx5classes.pas"/>
+        <Caret Line="928" Column="12" TopLine="892"/>
       </Position24>
       <Position25>
         <Filename Value="rx5classes.pas"/>
-        <Caret Line="870" Column="1" TopLine="827"/>
+        <Caret Line="927" Column="13" TopLine="893"/>
       </Position25>
       <Position26>
         <Filename Value="rx5classes.pas"/>
-        <Caret Line="865" Column="19" TopLine="835"/>
+        <Caret Line="883" Column="24" TopLine="868"/>
       </Position26>
       <Position27>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="891" Column="7" TopLine="846"/>
+        <Filename Value="fprogram.pas"/>
+        <Caret Line="101" Column="1" TopLine="64"/>
       </Position27>
       <Position28>
         <Filename Value="rx5classes.pas"/>
-        <Caret Line="928" Column="12" TopLine="892"/>
+        <Caret Line="190" Column="42" TopLine="148"/>
       </Position28>
       <Position29>
         <Filename Value="rx5classes.pas"/>
-        <Caret Line="927" Column="13" TopLine="893"/>
+        <Caret Line="36" Column="140" TopLine="1"/>
       </Position29>
       <Position30>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="883" Column="24" TopLine="868"/>
+        <Filename Value="fprogram.pas"/>
+        <Caret Line="80" Column="1" TopLine="51"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
