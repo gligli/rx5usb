@@ -27,7 +27,6 @@ object MainForm: TMainForm
     Images = ilImages
     ShowCaptions = True
     TabOrder = 0
-    Wrapable = False
     object btNew: TToolButton
       Left = 2
       Top = 1
@@ -188,13 +187,14 @@ object MainForm: TMainForm
     OnData = lvSoundsData
     OnSelectItem = lvSoundsSelectItem
   end
-  object Splitter1: TSplitter
+  object spDetails: TSplitter
     Cursor = crVSplit
     Left = 0
     Height = 7
     Top = 307
     Width = 982
     Align = alBottom
+    AutoSnap = False
     Beveled = True
     ResizeAnchor = akBottom
   end
@@ -207,6 +207,7 @@ object MainForm: TMainForm
     BevelOuter = bvNone
     ClientHeight = 336
     ClientWidth = 982
+    Constraints.MinHeight = 336
     TabOrder = 3
     object btPlayAll: TBitBtn
       Left = 8
@@ -422,7 +423,7 @@ object MainForm: TMainForm
       Title.Text.Strings = (
         'TAChart'
       )
-      Anchors = [akTop, akLeft, akRight]
+      Anchors = [akTop, akLeft, akRight, akBottom]
       ParentColor = False
       OnMouseDown = chartWaveMouseDown
       object chartWaveData: TLineSeries
@@ -439,6 +440,7 @@ object MainForm: TMainForm
       Height = 57
       Top = 274
       Width = 600
+      Anchors = [akLeft, akBottom]
       Caption = 'Looping (left click / right click on waveform sets loop start / end)'
       ClientHeight = 39
       ClientWidth = 596
@@ -490,6 +492,7 @@ object MainForm: TMainForm
       Height = 57
       Top = 210
       Width = 600
+      Anchors = [akLeft, akBottom]
       Caption = 'PCM quality (sample rate depends on base pitch)'
       ClientHeight = 39
       ClientWidth = 596
@@ -565,6 +568,7 @@ object MainForm: TMainForm
       Height = 57
       Top = 146
       Width = 601
+      Anchors = [akLeft, akBottom]
       Caption = 'Basic settings'
       ClientHeight = 39
       ClientWidth = 597
@@ -650,6 +654,7 @@ object MainForm: TMainForm
       Height = 185
       Top = 146
       Width = 352
+      Anchors = [akLeft, akBottom]
       Caption = 'Envelope (higher means slower)'
       ClientHeight = 167
       ClientWidth = 348

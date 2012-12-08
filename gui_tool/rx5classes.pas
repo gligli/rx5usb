@@ -278,8 +278,8 @@ procedure RX5_12To16Bit(AData1,AData2,AData3:Byte; out AOut1,AOut2:Word);
 var si1:SmallInt absolute AOut1;
     si2:SmallInt absolute AOut2;
 begin
-  si1:=(AData2 shl 8) or ((AData1 shr 4) shl 4);
-  si2:=(AData3 shl 8) or ((AData1 and $0f) shl 4);
+  si1:=(AData2 shl 8) or ((AData1 and $0f) shl 4);
+  si2:=(AData3 shl 8) or ((AData1 shr 4) shl 4);
 end;
 
 function RX5_16To8Bit(AData: Word): Byte;
@@ -292,7 +292,7 @@ procedure RX5_16To12Bit(AData1, AData2: Word; out AOut1, AOut2, AOut3: Byte);
 begin
   AOut2:=(AData1 shr 8) and $ff;
   AOut3:=(AData2 shr 8) and $ff;
-  AOut1:=(((AData1 shr 4) and $0f) shl 4) or ((AData2 shr 4) and $0f);
+  AOut1:=(((AData2 shr 4) and $0f) shl 4) or ((AData1 shr 4) and $0f);
 end;
 
 function RX5_Checksum(APtr: PByte; ASize: Integer): Word;

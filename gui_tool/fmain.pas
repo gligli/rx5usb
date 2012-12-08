@@ -22,6 +22,8 @@ unit FMain;
 
 {$mode objfpc}{$H+}
 
+{.$define TEST_GRAPH}
+
 interface
 
 uses
@@ -80,7 +82,7 @@ type
     sdBank: TSaveDialog;
     seLoopEnd: TSpinEdit;
     seLoopStart: TSpinEdit;
-    Splitter1: TSplitter;
+    spDetails: TSplitter;
     tbChannel: TTrackBar;
     tbTop: TToolBar;
     btNew: TToolButton;
@@ -207,6 +209,10 @@ end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
+{$ifdef TEST_GRAPH}
+  chartWave.AllowZoom:=True;
+{$endif}
+
   FormatSettings.ThousandSeparator:=' ';
 
   FPreviewAudioData:=TMemoryStream.Create;
@@ -552,6 +558,10 @@ begin
 
         skip:=(ms.Size div (CMaxPreviewChartPoints * 2)) * 2;
 
+{$ifdef TEST_GRAPH}
+        skip:=0;
+{$endif}
+
         while ms.Position<ms.Size do
         begin
           w:=SmallInt(ms.ReadWord)/65536.0;
@@ -627,6 +637,7 @@ begin
     FPCurrentSound:=FBank.Sounds[lvSounds.ItemIndex];
 
   pnDetails.Visible:=FPCurrentSound<>nil;
+  spDetails.Visible:=FPCurrentSound<>nil;
 
   UpdatePanel(True);
 end;

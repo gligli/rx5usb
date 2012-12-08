@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="75" Y="18"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="81"/>
       </Unit0>
       <Unit1>
         <Filename Value="fmain.pas"/>
@@ -24,19 +24,20 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="359"/>
-        <CursorPos X="54" Y="406"/>
-        <UsageCount Value="118"/>
+        <TopLine Value="609"/>
+        <CursorPos X="1" Y="639"/>
+        <UsageCount Value="120"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="rx5classes.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="rx5classes"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="892"/>
-        <CursorPos X="39" Y="910"/>
-        <UsageCount Value="118"/>
+        <TopLine Value="256"/>
+        <CursorPos X="165" Y="287"/>
+        <UsageCount Value="120"/>
       </Unit2>
       <Unit3>
         <Filename Value="rawhid.pas"/>
@@ -45,7 +46,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="52" Y="6"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="28"/>
       </Unit3>
       <Unit4>
         <Filename Value="fprogram.pas"/>
@@ -55,9 +56,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="fprogram"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="21"/>
+        <TopLine Value="3"/>
         <CursorPos X="1" Y="72"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="28"/>
       </Unit4>
       <Unit5>
         <Filename Value="gnugettext\gnugettext.pas"/>
@@ -197,14 +198,14 @@
         <UnitName Value="Controls"/>
         <WindowIndex Value="0"/>
         <TopLine Value="145"/>
-        <CursorPos X="34" Y="175"/>
-        <UsageCount Value="6"/>
+        <CursorPos X="27" Y="175"/>
+        <UsageCount Value="10"/>
       </Unit22>
       <Unit23>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\objpas\classes\classesh.inc"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="653"/>
-        <CursorPos X="1" Y="698"/>
+        <TopLine Value="80"/>
+        <CursorPos X="3" Y="110"/>
         <UsageCount Value="13"/>
       </Unit23>
       <Unit24>
@@ -467,11 +468,15 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="1" HistoryIndex="0">
+    <JumpHistory Count="2" HistoryIndex="1">
       <Position1>
         <Filename Value="fmain.pas"/>
-        <Caret Line="11" Column="148" TopLine="4"/>
+        <Caret Line="542" Column="18" TopLine="525"/>
       </Position1>
+      <Position2>
+        <Filename Value="fmain.pas"/>
+        <Caret Line="640" Column="1" TopLine="609"/>
+      </Position2>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
