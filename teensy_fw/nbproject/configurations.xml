@@ -3,13 +3,14 @@
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df name="teensy_fw" root=".">
       <df name=".dep">
-        <in>flash_pmc29f002.o.d</in>
+        <in>flash_sst39sf0x0.o.d</in>
         <in>print.o.d</in>
         <in>rx5usb_fw.o.d</in>
         <in>usb_rawhid_debug.o.d</in>
       </df>
       <in>flash.h</in>
       <in>flash_pmc29f002.c</in>
+      <in>flash_sst39sf0x0.c</in>
       <in>print.c</in>
       <in>print.h</in>
       <in>rx5usb_fw.c</in>

@@ -39,7 +39,7 @@
 # To rebuild project do "make clean" then "make all".
 #----------------------------------------------------------------------------
 
-FLASH_CHIP = pmc29f002
+FLASH_CHIP = sst39sf0x0
 
 # Target file name (without extension).
 TARGET = rx5usb_fw

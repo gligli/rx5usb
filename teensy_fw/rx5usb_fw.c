@@ -28,20 +28,24 @@ uint8_t recv_buffer[64];
 
 char detect_RX5_power(void)
 {
-	unsigned char detected=0,i;
+	char detected;
+	
+	// use R3 as a pulldown
 	
 	cbi(PORTB,PB6);
 	cbi(DDRB,PB6);
 
-	for(i=0;i<200;++i)
-	{
-		detected+=(PINB & _BV(PB6)) >> PB6;
-		_delay_us(i);
-	}
+	sbi(DDRB,PB4);
+	cbi(PORTB,PB4);
+	
+	_delay_ms(1);
+	
+	detected=(PINB & _BV(PB6))!=0;
 
-	return detected>190;
+	DIR_OE(1);
+	
+	return detected;
 }
-
 
 int main(void)
 {
@@ -51,9 +55,6 @@ int main(void)
 	CPU_PRESCALE(CPU_8MHz);
 
 	flash_setEnable(0);
-	
-	cbi(PORTB,PB6);
-	cbi(DDRB,PB6);
 	
 	if(detect_RX5_power())
 	{
@@ -98,7 +99,7 @@ int main(void)
 
 			flash_setEnable(1);
 
-			print("id:\n");
+			print("id: ");
 			if(!flash_checkId())
 			{
 				print("bad id!\n");
@@ -106,7 +107,11 @@ int main(void)
 			}
 
 			print("erase...\n");
+#if 1
 			flash_eraseBlocks(flash_addr,flash_size);
+#else
+			flash_eraseChip();
+#endif			
 
 			print("ack header...\n");
 
