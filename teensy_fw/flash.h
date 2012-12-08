@@ -4,13 +4,13 @@
 #define cbi(x,y) x&= ~_BV(y)
 #define sbi(x,y)   x|= _BV(y)
 
-#define SET_OE cbi(PORTB,PORTB4)
-#define CLR_OE sbi(PORTB,PORTB4)
-#define DIR_OE(x) {if(x) cbi(DDRB,PORTB4); else sbi(DDRB,PORTB4);}
+#define SET_OE cbi(PORTB,PB4)
+#define CLR_OE sbi(PORTB,PB4)
+#define DIR_OE(x) {if(x) cbi(DDRB,PB4); else sbi(DDRB,PB4);}
 
-#define SET_WE cbi(PORTB,PORTB5)
-#define CLR_WE sbi(PORTB,PORTB5)
-#define DIR_WE(x) {if(x) cbi(DDRB,PORTB5); else sbi(DDRB,PORTB5);}
+#define SET_WE cbi(PORTB,PB5)
+#define CLR_WE sbi(PORTB,PB5)
+#define DIR_WE(x) {if(x) cbi(DDRB,PB5); else sbi(DDRB,PB5);}
 
 #define SET_ADDR(x)												\
 	PORTD=((uint32_t)x) & 0xff;					                \
@@ -36,8 +36,9 @@
 #define DIR_DATA(x) {if(x) DDRF=0; else DDRF=0xff;}
 
 void flash_setEnable(char enable);
-void flash_printId(void);
-void flash_chipErase(void);
+char flash_checkId(void); // nonzero return means good ID
+void flash_eraseChip(void);
+void flash_eraseBlocks(unsigned long addr, unsigned long size);
 void flash_programByte(unsigned long addr, unsigned char byte);
 unsigned char flash_getByte(unsigned long addr);
 
