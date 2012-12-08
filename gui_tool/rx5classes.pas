@@ -877,6 +877,7 @@ end;
 procedure TRX5Cartridge.Upload(APStream: TStream);
 const
   CRX5HIDTimeout=1000; //ms
+  CRX5HIDWaitLoop=50; //ms
 
 var res:Integer;
     hdr:TRX5HIDHeader;
@@ -895,6 +896,7 @@ begin
       Exit;
     end;
     res:=rawhid_open(1, $6112, $5550, $FFAB, $0200);
+    Sleep(CRX5HIDWaitLoop);
   until res>0;
 
   try
@@ -931,7 +933,7 @@ begin
         FStatus:=rpsInterrupted;
         Exit;
       end;
-      res:=rawhid_recv(0,@recvBuf,SizeOf(recvBuf),CRX5HIDTimeout);
+      res:=rawhid_recv(0,@recvBuf,SizeOf(recvBuf),CRX5HIDWaitLoop);
     until res>0;
 
     if not CompareMem(@recvBuf,@hdr,sizeof(hdr)) then
