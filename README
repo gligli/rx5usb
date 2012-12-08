@@ -1,0 +1,9 @@
+This is the RX5USB project, a Yamaha RX5 DIY programmable waveform cartridge / waveform bank editor.
+
+Everything is under GPL v3 license, except files that have their own license in the header.
+
+The Yamaha RX5 is a mid 80's PCM drum machine ( http://www.vintagesynth.com/yamaha/rx5.php )
+
+This project will allow custom sounds/samples to be played with it.
+
+See http://forum.anafrog.com/phpBB/viewtopic.php?f=36&t=9672 for more info (French forum).
