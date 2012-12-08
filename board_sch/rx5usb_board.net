@@ -1,4 +1,4 @@
-# EESchema Netlist Version 1.1 created  06/12/2012 22:20:04
+# EESchema Netlist Version 1.1 created  08/12/2012 12:36:15
 (
  ( /50BF5B72 C2V8 C1 47u
   ( 1 VCC )
@@ -9,23 +9,23 @@
   ( 2 GND )
  )
  ( /50BF552D D4 D1 1N5817
-  ( 1 N-000060 )
+  ( 1 N-000017 )
   ( 2 VCC )
  )
  ( /50BF5B99 LED-3MM D2 LED
-  ( 1 N-000054 )
+  ( 1 N-000059 )
   ( 2 GND )
  )
  ( /50C1070B D3 D3 1N4148
-  ( 1 N-000055 )
+  ( 1 N-000060 )
   ( 2 N-000057 )
  )
  ( /50C1077B D3 D4 1N4148
-  ( 1 N-000055 )
+  ( 1 N-000060 )
   ( 2 /A17 )
  )
  ( /50BF49CB RX5_WDC_CART P1 RX5_WDC
-  ( +5V N-000060 )
+  ( +5V N-000017 )
   ( A0 /A0 )
   ( A1 /A1 )
   ( A2 /A2 )
@@ -60,22 +60,26 @@
   ( PROT ? )
   ( WE ? )
  )
- ( /50BF56C0 R4-LARGE_PADS R1 10k
+ ( /50BF56C0 R4-LARGE_PADS R1 4k7
   ( 1 GND )
   ( 2 /A18 )
  )
  ( /50BF5B8F R4-LARGE_PADS R2 470
   ( 1 VCC )
-  ( 2 N-000054 )
+  ( 2 N-000059 )
  )
  ( /50C10B5D R4-LARGE_PADS R3 4k7
+  ( 1 N-000017 )
+  ( 2 N-000060 )
+ )
+ ( /50C31F2C R4-LARGE_PADS R4 4k7
   ( 1 N-000060 )
   ( 2 N-000055 )
  )
  ( /50BF54EC SPTD-3 SW1 SWITCH_INV
   ( 1 ? )
   ( 2 /A18 )
-  ( 3 N-000060 )
+  ( 3 N-000017 )
  )
  ( /50BF4075 TEENSYPP2 U1 TEENSYPP2
   ( 1 GND )
@@ -127,8 +131,8 @@
   ( 47 /A18 )
   ( 48 ? )
   ( 49 N-000055 )
-  ( 50 N-000053 )
-  ( 51 N-000060 )
+  ( 50 N-000021 )
+  ( 51 N-000017 )
   ( 52 VCC )
   ( 53 ? )
   ( 54 ? )
@@ -164,7 +168,7 @@
   ( 28 /A13 )
   ( 29 /A14 )
   ( 30 /A17 )
-  ( 31 N-000053 )
+  ( 31 N-000021 )
   ( 32 VCC )
  )
 )
@@ -215,6 +219,13 @@ $component R2
  SM1206
 $endlist
 $component R3
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R4
  R?
  SM0603
  SM0805
