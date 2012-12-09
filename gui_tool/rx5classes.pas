@@ -87,6 +87,7 @@ type
     function GetSourceBitsPerSample: Integer;
     function GetSourceLength: TDateTime;
     function GetSourcePCMSize: Integer;
+    procedure SetFormat(AValue: TRX5SoundFormat);
     procedure SetPitch(AValue: Integer);
     procedure SetRawMode(AValue: Boolean);
   public
@@ -101,7 +102,7 @@ type
     procedure ExportPreviewPCMToStream(AStream:TStream);
 
     property Name:String read FName write FName;
-    property Format:TRX5SoundFormat read FFormat write FFormat;
+    property Format:TRX5SoundFormat read FFormat write SetFormat;
     property BitsPerSample:Integer read GetBitsPerSample;
     property RawMode:Boolean read FRawMode write SetRawMode;
 
@@ -348,12 +349,37 @@ begin
   Result:=Length(FSourcePCM);
 end;
 
-procedure TRX5Sound.SetPitch(AValue: Integer);
+procedure TRX5Sound.SetFormat(AValue: TRX5SoundFormat);
+var oldbps,bps:Integer;
 begin
+  if FFormat=AValue then Exit;
+
+  oldbps:=BitsPerSample;
+
+  FFormat:=AValue;
+
+  bps:=BitsPerSample;
+
+  FLoopStart:=round(FLoopStart*bps / oldbps);
+  FLoopEnd:=round(FLoopEnd*bps / oldbps);
+end;
+
+procedure TRX5Sound.SetPitch(AValue: Integer);
+var oldsr,sr:Integer;
+begin
+  if Pitch=AValue then Exit;
+
+  oldsr:=SampleRate;
+
   AValue:=AValue+CRX5BasePitch;
 
   FOctave:=AValue div 120;
   FNote:=AValue mod 120;
+
+  sr:=SampleRate;
+
+  FLoopStart:=round(FLoopStart*sr / oldsr);
+  FLoopEnd:=round(FLoopEnd*sr / oldsr);
 end;
 
 procedure TRX5Sound.SetRawMode(AValue: Boolean);

@@ -493,10 +493,6 @@ begin
     Exit;
 
   FPCurrentSound.Name:=edName.Text;
-  if rb8.Checked then FPCurrentSound.Format:=rsfPCM8;
-  if rb12.Checked then FPCurrentSound.Format:=rsfPCM12;
-
-  FPCurrentSound.Pitch:=round(sePitch.Value*10);
 
   FPCurrentSound.LoopEnable:=chLoop.Checked;
   FPCurrentSound.LoopStart:=seLoopStart.Value;
@@ -512,6 +508,11 @@ begin
   FPCurrentSound.EnvDecay2Rate:=tbEnvD2R.Position;
   FPCurrentSound.EnvReleaseRate:=tbEnvRR.Position;
   FPCurrentSound.EnvGateTime:=tbEnvGT.Position;
+
+  // pitch and format will adjust loop start/end, so keep that code after loop stuff
+  FPCurrentSound.Pitch:=round(sePitch.Value*10);
+  if rb8.Checked then FPCurrentSound.Format:=rsfPCM8;
+  if rb12.Checked then FPCurrentSound.Format:=rsfPCM12;
 
   FChanged:=True;
 
