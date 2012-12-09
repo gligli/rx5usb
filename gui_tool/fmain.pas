@@ -632,6 +632,8 @@ begin
 
   btSave.Enabled:=not overloaded;
   btProgram.Enabled:=not overloaded;
+  btAddSound.Enabled:=FBank.Sounds.Count<CRX5MaxNumSoundEntries;
+  btAddManySounds.Enabled:=FBank.Sounds.Count<CRX5MaxNumSoundEntries;
 
   FPCurrentSound:=nil;
   if (lvSounds.ItemIndex>=0)  then

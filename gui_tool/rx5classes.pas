@@ -230,6 +230,7 @@ const
   CRX5BankSize=128*1024;
   CRX5BankHeaderSize=1024;
   CRX5SoundEntrySize=32;
+  CRX5MaxNumSoundEntries=30;
 
   CRX5SoundFormatBPS:array[TRX5SoundFormat] of Integer = (0,8,12);
 
