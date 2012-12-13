@@ -29,7 +29,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, TAGraph, TASeries, Forms,
   Controls, Graphics, Dialogs, StdCtrls, ComCtrls, ExtCtrls, rx5classes,
-  LCLType, Buttons, Spin, math, jedi_sdl_sound, sdl;
+  LCLType, Buttons, Spin, math, jedi_sdl_sound, sdl, fairlightparsers;
 
 type
 
@@ -47,6 +47,7 @@ type
     chartWaveData: TLineSeries;
     chLoop: TCheckBox;
     edName: TEdit;
+    odSamples: TOpenDialog;
     sePitch: TFloatSpinEdit;
     gbLoop: TGroupBox;
     gbQuality: TGroupBox;
@@ -324,30 +325,48 @@ begin
 end;
 
 procedure TMainForm.btAddManySoundsClick(Sender: TObject);
-var i:Integer;
+var i,j:Integer;
+    cmi:TCMI2xDiskParser;
+    s:TRX5Sound;
 begin
-  odSample.Options:=odSample.Options+[ofAllowMultiSelect];
-  try
-    if odSample.Execute then
+  if odSamples.Execute then
+  begin
+    for i:=0 to odSamples.Files.Count-1 do
     begin
-      for i:=0 to odSample.Files.Count-1 do
+      if SameText(ExtractFileExt(odSamples.Files[i]),'.imd') then
       begin
-        FPCurrentSound:=TRX5Sound.Create;
+        cmi:=TCMI2xDiskParser.Create;
+        try
+          cmi.ImportFromIMDFile(odSamples.Files[i]);
 
-        if ImportSample(odSample.Files[i]) then
-          FBank.Sounds.Add(FPCurrentSound)
+          for j:=0 to cmi.Samples.Count-1 do
+          begin
+            s:=TRX5Sound.Create;
+            s.ImportFromCMISample(cmi.Samples[j]);
+            FBank.Sounds.Add(s)
+          end;
+        finally
+          cmi.Free;
+        end;
+      end
+      else
+      begin
+        s:=TRX5Sound.Create;
+
+        if ImportSample(odSamples.Files[i]) then
+          FBank.Sounds.Add(s)
         else
-          FPCurrentSound.Free;
+          s.Free;
       end;
-
-      UpdateList;
-
-      lvSounds.ItemIndex:=FBank.Sounds.Count-1;
-
-      UpdateState;
     end;
-  finally
-    odSample.Options:=odSample.Options-[ofAllowMultiSelect];
+
+    FChanged:=True;
+
+    UpdateList;
+
+    lvSounds.ItemIndex:=FBank.Sounds.Count-1;
+
+    UpdateState;
   end;
 end;
 
@@ -631,10 +650,10 @@ begin
 
   llSize.Caption:=Format(SSizeCpation,[100*projected/CRX5BankSize,projected/1024,CRX5BankSize/1024]);
 
+  overloaded:=overloaded or (FBank.Sounds.Count>CRX5MaxNumSoundEntries);
+
   btSave.Enabled:=not overloaded;
   btProgram.Enabled:=not overloaded;
-  btAddSound.Enabled:=FBank.Sounds.Count<CRX5MaxNumSoundEntries;
-  btAddManySounds.Enabled:=FBank.Sounds.Count<CRX5MaxNumSoundEntries;
 
   FPCurrentSound:=nil;
   if (lvSounds.ItemIndex>=0)  then
@@ -720,6 +739,8 @@ begin
 end;
 
 procedure TMainForm.Play(ALoop: Boolean);
+const
+  CLoopSeconds=5;
 var ts,te:TDateTime;
     ps,pe,sz:Integer;
     ms:TMemoryStream;
@@ -749,7 +770,7 @@ begin
       if sz<=0 then
         Exit;
 
-      while FPreviewAudioData.Position<(4*FPCurrentSound.FinalPCMSize*8 div FPCurrentSound.BitsPerSample) do
+      while FPreviewAudioData.Position<CLoopSeconds*2*FPCurrentSound.SampleRate do
       begin
         ms.Seek(ps,soFromBeginning);
         FPreviewAudioData.CopyFrom(ms,Min(ms.Size-ps,sz));

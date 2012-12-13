@@ -25,7 +25,7 @@ unit rx5classes;
 interface
 
 uses
-  Classes, SysUtils, contnrs, math, sdl, jedi_sdl_sound, rawhid;
+  Classes, SysUtils, contnrs, math, sdl, jedi_sdl_sound, rawhid, fairlightparsers;
 
 type
   TBassErrorString=record
@@ -96,6 +96,7 @@ type
 
     procedure ImportFromBankData(AStream:TStream;AHeaderEntryOffset:Integer);
     procedure ImportFromFile(AFileName:String);
+    procedure ImportFromCMISample(ACMISample:TCMISample);
 
     procedure ExportHeaderToStream(AStream:TStream;APCMDataOffset:Integer);
     procedure ExportRawPCMToStream(AStream:TStream);
@@ -358,10 +359,13 @@ begin
 
   FFormat:=AValue;
 
-  bps:=BitsPerSample;
+  if not RawMode then
+  begin
+    bps:=BitsPerSample;
 
-  FLoopStart:=round(FLoopStart*bps / oldbps);
-  FLoopEnd:=round(FLoopEnd*bps / oldbps);
+    FLoopStart:=round(1.0 * FLoopStart * bps / oldbps);
+    FLoopEnd:=round(1.0 * FLoopEnd * bps / oldbps);
+  end;
 end;
 
 procedure TRX5Sound.SetPitch(AValue: Integer);
@@ -376,10 +380,13 @@ begin
   FOctave:=AValue div 120;
   FNote:=AValue mod 120;
 
-  sr:=SampleRate;
+  if not RawMode then
+  begin
+    sr:=SampleRate;
 
-  FLoopStart:=round(FLoopStart*sr / oldsr);
-  FLoopEnd:=round(FLoopEnd*sr / oldsr);
+    FLoopStart:=round(1.0 * FLoopStart * sr / oldsr);
+    FLoopEnd:=round(1.0 * FLoopEnd * sr / oldsr);
+  end;
 end;
 
 procedure TRX5Sound.SetRawMode(AValue: Boolean);
@@ -535,6 +542,25 @@ begin
   FName:=Copy(ChangeFileExt(ExtractFileName(AFileName),''),1,6);
 
   Sound_FreeSample(pss);
+end;
+
+procedure TRX5Sound.ImportFromCMISample(ACMISample: TCMISample);
+var i:Integer;
+begin
+  FFormat:=rsfPCM8;
+
+  FLoopEnable:=ACMISample.LoopEnable;
+  FLoopStart:=ACMISample.LoopStart;
+  FLoopEnd:=ACMISample.LoopEnd;
+
+  SetLength(FFinalPCM,ACMISample.PCMLength);
+
+  // U8 to S8
+  for i:=0 to ACMISample.PCMLength-1 do
+    FFinalPCM[i]:=ACMISample.PCMData[i]-128;
+
+  FRawMode:=True;
+  FName:=copy(ACMISample.Name,1,6);
 end;
 
 procedure TRX5Sound.ExportHeaderToStream(AStream: TStream;

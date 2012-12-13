@@ -820,7 +820,7 @@ object MainForm: TMainForm
     DefaultExt = '.rx5bank'
     Filter = 'RX5 sound bank (*.rx5bank)|*.rx5bank|All files (*.*)|*.*'
     Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing, ofViewDetail]
-    left = 856
+    left = 800
     top = 213
   end
   object ilImages: TImageList
@@ -1092,14 +1092,14 @@ object MainForm: TMainForm
     Filter = 'RX5 sound bank (*.rx5bank)|*.rx5bank|All files (*.*)|*.*'
     Options = [ofOverwritePrompt, ofPathMustExist, ofEnableSizing, ofViewDetail]
     left = 800
-    top = 213
+    top = 264
   end
   object odSample: TOpenDialog
     Title = 'Open existing samples'
     DefaultExt = '.wav'
     Filter = 'Sample data (*.wav;*.mp3;*.ogg)|*.wav;*.mp3;*.ogg|All files (*.*)|*.*'
     Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing, ofViewDetail]
-    left = 912
+    left = 856
     top = 213
   end
   object ttPreview: TTimer
@@ -1107,6 +1107,14 @@ object MainForm: TMainForm
     Interval = 100
     OnTimer = ttPreviewTimer
     left = 744
+    top = 213
+  end
+  object odSamples: TOpenDialog
+    Title = 'Open existing samples'
+    DefaultExt = '.wav'
+    Filter = 'Sample data (*.wav;*.mp3;*.ogg)|*.wav;*.mp3;*.ogg|Fairlight CMI IIx Disks (*.imd)|*.imd|All files (*.*)|*.*'
+    Options = [ofAllowMultiSelect, ofPathMustExist, ofFileMustExist, ofEnableSizing, ofViewDetail]
+    left = 912
     top = 213
   end
 end

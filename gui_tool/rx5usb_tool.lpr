@@ -28,8 +28,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, FMain, rx5classes, tachartlazaruspkg, rawhid, fprogram,
-  sysutils,
-  DefaultTranslator;
+  fairlightparsers, sysutils, DefaultTranslator;
 
 {$R *.res}
 
