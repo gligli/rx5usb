@@ -351,12 +351,12 @@ begin
       end
       else
       begin
-        s:=TRX5Sound.Create;
+        FPCurrentSound:=TRX5Sound.Create;
 
         if ImportSample(odSamples.Files[i]) then
-          FBank.Sounds.Add(s)
+          FBank.Sounds.Add(FPCurrentSound)
         else
-          s.Free;
+          FPCurrentSound.Free;
       end;
     end;
 
@@ -740,7 +740,7 @@ end;
 
 procedure TMainForm.Play(ALoop: Boolean);
 const
-  CLoopSeconds=5;
+  CLoopSeconds:Int64=5;
 var ts,te:TDateTime;
     ps,pe,sz:Integer;
     ms:TMemoryStream;
