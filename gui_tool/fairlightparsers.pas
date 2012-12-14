@@ -165,15 +165,14 @@ end;
 procedure TCMI2xDiskParser.ImportFromRawDiskData(AStream: TStream);
 const
     CVCFilePCMOffset=$1480;
+    CVCFilePCMSize=16384;
     CVCFileParamsOffset=$12b2;
-    CVCFileSectorCount=170;
 
 var entries: array[0..159] of TCMI2xFileEntry;
     entry:TCMI2xFileEntry;
     entriesCount:Integer;
     vcStart,sector,pcmSize:Integer;
     i:Integer;
-    b1:Integer;
     s:TCMISample;
 begin
   AStream.Seek($180,soFromBeginning);
@@ -212,7 +211,7 @@ begin
 
       AStream.Seek(vcStart+CVCFilePCMOffset,soFromBeginning);
 
-      pcmSize:=CVCFileSectorCount*CCMI2xSectorSize-CVCFilePCMOffset-2*CCMI2xSectorSize;
+      pcmSize:=CVCFilePCMSize;
 
       SetLength(s.FPCMData,pcmSize);
 
