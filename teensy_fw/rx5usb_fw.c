@@ -29,20 +29,24 @@ uint8_t recv_buffer[64];
 char detect_RX5_power(void)
 {
 	char detected;
-	
-	// use R3 as a pulldown
-	
-	cbi(PORTB,PB6);
-	cbi(DDRB,PB6);
+	unsigned char od,op;
 
-	sbi(DDRB,PB4);
-	cbi(PORTB,PB4);
+	// set A0..A7 as pulled up inputs, so:
+	// - when the cartridge isn't plugged, we read 0xff
+	// - when the cartridge is plugged, we read 0x00
 	
-	_delay_ms(1);
+	od=DDRD;
+	op=PORTD;
 	
-	detected=(PINB & _BV(PB6))!=0;
-
-	DIR_OE(1);
+	DDRD=0x00;
+	PORTD=0xff;
+	
+	_delay_ms(100); // the RX5 might need some time to output proper zero address
+	
+	detected=PIND!=0xff; 
+	
+	DDRD=od;
+	PORTD=op;
 	
 	return detected;
 }
