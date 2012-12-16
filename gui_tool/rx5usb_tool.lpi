@@ -89,7 +89,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir);jedi-sdl"/>
-      <OtherUnitFiles Value="jedi-sdl"/>
+      <OtherUnitFiles Value="jedi-sdl;newac-libsamplerate"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

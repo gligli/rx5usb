@@ -557,6 +557,7 @@ begin
   try
     btPlayAll.Enabled:=not FPreviewContinue;
     btPlayLoop.Enabled:=btPlayAll.Enabled and FPCurrentSound.LoopEnable;
+    btStop.Enabled:=FPreviewContinue;
 
     if AUpdateChart then
     begin;
@@ -573,7 +574,7 @@ begin
 
       ms:=TMemoryStream.Create;
       try
-        FPCurrentSound.ExportPreviewPCMToStream(ms);
+        FPCurrentSound.ExportPreviewPCMToStream(ms,True);
         ms.Seek(0,soFromBeginning);
 
         skip:=(ms.Size div (CMaxPreviewChartPoints * 2)) * 2;
@@ -754,7 +755,7 @@ begin
   begin
     ms:=TMemoryStream.Create;
     try
-      FPCurrentSound.ExportPreviewPCMToStream(ms);
+      FPCurrentSound.ExportPreviewPCMToStream(ms,False);
 
       ts:=GetPCMLength(FPCurrentSound.LoopStart,FPCurrentSound.SampleRate,FPCurrentSound.BitsPerSample);
       te:=GetPCMLength(FPCurrentSound.LoopEnd,FPCurrentSound.SampleRate,FPCurrentSound.BitsPerSample);
@@ -781,7 +782,7 @@ begin
     end;
   end
   else
-    FPCurrentSound.ExportPreviewPCMToStream(FPreviewAudioData);
+    FPCurrentSound.ExportPreviewPCMToStream(FPreviewAudioData,False);
 
   FPreviewAudioData.Seek(0,soFromBeginning);
 
@@ -800,7 +801,7 @@ begin
 
   SDL_PauseAudio(0);
 
-  UpdateState;
+  UpdatePanel(False);
 end;
 
 procedure TMainForm.Stop;

@@ -25,7 +25,7 @@ unit rx5classes;
 interface
 
 uses
-  Classes, SysUtils, contnrs, math, sdl, jedi_sdl_sound, rawhid, fairlightparsers;
+  Classes, SysUtils, contnrs, math, sdl, jedi_sdl_sound, libsamplerate, rawhid, fairlightparsers;
 
 type
   TBassErrorString=record
@@ -99,8 +99,8 @@ type
     procedure ImportFromCMISample(ACMISample:TCMISample);
 
     procedure ExportHeaderToStream(AStream:TStream;APCMDataOffset:Integer);
-    procedure ExportRawPCMToStream(AStream:TStream);
-    procedure ExportPreviewPCMToStream(AStream:TStream);
+    procedure ExportRawPCMToStream(AStream:TStream;ADraftQuality:Boolean);
+    procedure ExportPreviewPCMToStream(AStream:TStream;ADraftQuality:Boolean);
 
     property Name:String read FName write FName;
     property Format:TRX5SoundFormat read FFormat write SetFormat;
@@ -639,7 +639,8 @@ begin
   Assert(AStream.Position-start=CRX5SoundEntrySize);
 end;
 
-procedure TRX5Sound.ExportPreviewPCMToStream(AStream: TStream);
+procedure TRX5Sound.ExportPreviewPCMToStream(AStream: TStream;
+  ADraftQuality: Boolean);
 var b1,b2,b3:Byte;
     w1,w2:Word;
 
@@ -647,7 +648,7 @@ var b1,b2,b3:Byte;
 begin
   ms:=TMemoryStream.Create;
   try
-    ExportRawPCMToStream(ms);
+    ExportRawPCMToStream(ms,ADraftQuality);
 
     ms.Seek(0,soFromBeginning);
 
@@ -690,16 +691,18 @@ begin
   end;
 end;
 
-procedure TRX5Sound.ExportRawPCMToStream(AStream: TStream);
-var cvt:TSDL_AudioCVT;
-    dstFmt:Integer;
-    buf:PByte;
+procedure TRX5Sound.ExportRawPCMToStream(AStream: TStream;
+  ADraftQuality: Boolean);
+var sdlCvt:TSDL_AudioCVT;
+    srcCvt:SRC_DATA;
+    tmpBuf,outBuf:PByte;
+    bufSize,res:Integer;
 
     b1,b2,b3:Byte;
     w1,w2:Word;
 
     pw,pwe:PWord;
-    pb,pbe:PByte;
+    eob:Boolean;
 begin
   if RawMode then
   begin
@@ -711,63 +714,81 @@ begin
     Exit;
   end;
 
-  dstFmt:=AUDIO_U8;
-  if Format=rsfPCM12 then
-    dstFmt:=AUDIO_S16;
+  sdlCvt.buf:=nil;
+  FillChar(sdlCvt,sizeof(sdlCvt),0);
 
-  cvt.buf:=nil;
-  FillChar(cvt,sizeof(cvt),0);
-
-  if SDL_BuildAudioCVT(@cvt,FSourceFormat,FSourceChannels,FSourceSampleRate,dstFmt,1,SampleRate)<0 then
+  if SDL_BuildAudioCVT(@sdlCvt,FSourceFormat,FSourceChannels,FSourceSampleRate,AUDIO_S16,1,FSourceSampleRate)<0 then
     raise ERX5Error.Create(SPCMConvertError);
 
-  cvt.len:=SourcePCMSize;
-  buf:=GetMemory(max(cvt.len,cvt.len*cvt.len_mult));
-  try
-    cvt.buf:=buf;
-    Move(FSourcePCM[0],buf^,cvt.len);
+  sdlCvt.len:=SourcePCMSize;
 
-    if SDL_ConvertAudio(@cvt)<0 then
+  bufSize:=max(SourcePCMSize,FinalPCMSize)*SizeOf(float)+1024; // allocate a little more in case there's a few samples more in the actual converted data
+  tmpBuf:=GetMemory(bufSize);
+  outBuf:=GetMemory(bufSize);
+  try
+    sdlCvt.buf:=tmpBuf;
+    Move(FSourcePCM[0],tmpBuf^,sdlCvt.len);
+
+    // in -> tmp (channels / bitrate cvt)
+    if SDL_ConvertAudio(@sdlCvt)<0 then
       raise ERX5Error.Create(SPCMConvertError);
 
+    srcCvt.src_ratio:=SampleRate/FSourceSampleRate;
+    srcCvt.data_in:=PFLOATARRAY(outBuf);
+    srcCvt.input_frames:=sdlCvt.len_cvt div SizeOf(SmallInt);
+    srcCvt.data_out:=PFLOATARRAY(tmpBuf);
+    srcCvt.output_frames:=bufSize div SizeOf(float);
+
+    // tmp -> out (S16 -> float)
+    src_short_to_float_array(PSHORTARRAY(tmpBuf),PFLOATARRAY(outBuf),srcCvt.input_frames);
+
+    // out -> tmp (resampling)
+    res:=src_simple(@srcCvt,ifthen(ADraftQuality,SRC_LINEAR,SRC_SINC_BEST_QUALITY),1);
+    if res<>0 then
+      raise ERX5Error.Create(SPCMConvertError+': '+src_strerror(res));
+
+    // tmp -> out (float -> S16)
+    src_float_to_short_array(PFLOATARRAY(tmpBuf),PSHORTARRAY(outBuf),srcCvt.output_frames_gen);
+
     if Format=rsfPCM12 then
-    begin
       AStream.WriteByte(0); // 12bit mode has a 1 byte latency
 
-      pw:=PWord(buf);
-      pwe:=PWord(@buf[cvt.len_cvt]);
-      while pw<pwe do
+    eob:=False;
+    pw:=PWord(outBuf);
+    pwe:=PWord(@outBuf[srcCvt.output_frames_gen*SizeOf(SmallInt)]);
+    while pw<pwe do
+    begin
+      w1:=pw^;
+      Inc(pw);
+
+      w2:=0;
+      if pw<pwe then
       begin
-        w1:=pw^;
+        w2:=pw^;
         Inc(pw);
+      end
+      else
+        eob:=True;
 
-        w2:=0;
-        if pw<pwe then
-        begin
-          w2:=pw^;
-          Inc(pw);
-        end;
 
+      if Format=rsfPCM12 then
+      begin
         RX5_16To12Bit(w1,w2,b1,b2,b3);
 
         AStream.WriteByte(b1);
         AStream.WriteByte(b2);
         AStream.WriteByte(b3);
-      end;
-    end
-    else
-    begin
-      pb:=PByte(buf);
-      pbe:=PByte(@buf[cvt.len_cvt]);
-      while pb<pbe do
+      end
+      else
       begin
-        b1:=pb^;
-        Inc(pb);
-        AStream.WriteByte(b1-128);
+        AStream.WriteByte(RX5_16To8Bit(w1));
+        if not eob then
+          AStream.WriteByte(RX5_16To8Bit(w2));
       end;
     end;
   finally
-    Freememory(buf);
+    Freememory(tmpBuf);
+    Freememory(outBuf);
   end;
 end;
 
@@ -870,7 +891,7 @@ begin
     for i:=0 to Sounds.Count-1 do
     begin
       Sounds[i].ExportHeaderToStream(hms,AStream.Position);
-      Sounds[i].ExportRawPCMToStream(AStream);
+      Sounds[i].ExportRawPCMToStream(AStream,False);
       cnt:=((AStream.Size+255) shr 8) shl 8;
       while AStream.Size<cnt do
         AStream.WriteByte(0);
