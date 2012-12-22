@@ -1,0 +1,57 @@
+*****************
+* RX5USB beta 1 *
+*****************
+
+https://github.com/gligli/rx5usb (Page du projet)
+
+http://forum.anafrog.com/phpBB/viewtopic.php?f=36&t=9672 (Forum en français)
+http://electro-music.com/forum/topic-56137.html (Forum en anglais)
+
+Description
+===========
+
+RX5USB est un projet dont le but est de créer une cartouche de sons programmable
+et un éditeur de banque de sons pour la Yamaha RX5.
+
+Tout est sous licence GNU GPL v3, excepté les fichiers qui stipulent leur propre
+licence.
+
+La Yamaha RX5 est une boite à rythmes PCM du milieu des années 80
+( http://www.vintagesynth.com/yamaha/rx5.php ).
+
+Ce projet permets de jouer des sons et échantillons personnalisés dessus.
+
+Montage
+=======
+
+Le dossier build_files de cette archive contient les fichiers nécessaires au
+montage de la cartouche, entre autres:
+
+rx5usb_sch_rev1.1.pdf: Schéma de la cartouche.
+
+rx5usb_pcb_rev2.8_bottom_side.pdf: Typon, face du dessous, vue du dessous.
+rx5usb_pcb_rev2.8_top_side.pdf Typon, face du dessus, vue du dessus.
+
+rx5usb_guide_fr.pdf : Guide de montage.
+
+Utilisation
+===========
+
+Le dossier windows_tool de cette archive contient l'application Windows
+d'édition des banques de son et de programmation de la cartouche.
+
+Voir http://www.youtube.com/watch?v=4zNYN3vE_iY pour une présentation de cette
+application.
+
+Le dossier example_banks contient quelques exemples de banques de son
+(Yamaha RX5 ROM, Linn LinnDrum, Roland TR-606, Roland TR-707).
+
+/!\ Important /!\
+Il ne faut jamais brancher le cable USB lorsque la cartouche est branchée à
+la RX5, la programmation de la cartouche doit donc se faire cartouche
+débranchée de la RX5.
+
+Historique
+==========
+
+- beta 1 : Première version publique.
