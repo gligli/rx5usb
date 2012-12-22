@@ -167,7 +167,7 @@ uses
 
 const
     CMaxPreviewChartPoints=10000;
-    CVersion='0.90 beta';
+    CVersion='1.00 beta';
 
 resourcestring
   SUnableToPlay='Unable to play sample';

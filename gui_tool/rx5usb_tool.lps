@@ -3,16 +3,19 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="9"/>
-    <BuildModes Active="Default"/>
+    <BuildModes Active="Release"/>
     <Units Count="57">
       <Unit0>
         <Filename Value="rx5usb_tool.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="rx5usb_tool"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="14" Y="36"/>
+        <CursorPos X="38" Y="21"/>
         <UsageCount Value="97"/>
+        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="fmain.pas"/>
@@ -21,11 +24,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="FMain"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="766"/>
-        <CursorPos X="34" Y="789"/>
+        <TopLine Value="150"/>
+        <CursorPos X="19" Y="171"/>
         <UsageCount Value="136"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
