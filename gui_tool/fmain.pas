@@ -167,7 +167,7 @@ uses
 
 const
     CMaxPreviewChartPoints=10000;
-    CVersion='1.00 beta';
+    CVersion='1.00 beta2';
 
 resourcestring
   SUnableToPlay='Unable to play sample';
@@ -410,7 +410,7 @@ begin
   if FPanelLoading or (FPCurrentSound=nil) then
     Exit;
 
-  p:=GetPCMSize(chartWave.XImageToGraph(X)/SecsPerDay,FPCurrentSound.SampleRate,FPCurrentSound.BitsPerSample);
+  p:=GetPCMSize(chartWave.XImageToGraph(X)/SecsPerDay,FPCurrentSound.SampleRate,FPCurrentSound.BitsPerSample,1);
 
   if Button=mbLeft then
     seLoopStart.Value:=p
@@ -566,8 +566,8 @@ begin
 
       if FPCurrentSound.LoopEnable then
       begin
-        ls:=GetPCMLength(FPCurrentSound.LoopStart,FPCurrentSound.SampleRate,FPCurrentSound.BitsPerSample)*SecsPerDay;
-        le:=GetPCMLength(FPCurrentSound.LoopEnd,FPCurrentSound.SampleRate,FPCurrentSound.BitsPerSample)*SecsPerDay;
+        ls:=GetPCMLength(FPCurrentSound.LoopStart,FPCurrentSound.SampleRate,FPCurrentSound.BitsPerSample,1)*SecsPerDay;
+        le:=GetPCMLength(FPCurrentSound.LoopEnd,FPCurrentSound.SampleRate,FPCurrentSound.BitsPerSample,1)*SecsPerDay;
         chartWaveLoop.AddXY(ls,0.5);
         chartWaveLoop.AddXY(le,0.5);
       end;
@@ -586,7 +586,7 @@ begin
         while ms.Position<ms.Size do
         begin
           w:=SmallInt(ms.ReadWord)/65536.0;
-          t:=GetPCMLength(ms.Position,FPCurrentSound.SampleRate,16)*SecsPerDay;
+          t:=GetPCMLength(ms.Position,FPCurrentSound.SampleRate,16,1)*SecsPerDay;
           chartWaveData.AddXY(t,w);
 
           ms.Seek(skip,soFromCurrent);
@@ -757,11 +757,11 @@ begin
     try
       FPCurrentSound.ExportPreviewPCMToStream(ms,False);
 
-      ts:=GetPCMLength(FPCurrentSound.LoopStart,FPCurrentSound.SampleRate,FPCurrentSound.BitsPerSample);
-      te:=GetPCMLength(FPCurrentSound.LoopEnd,FPCurrentSound.SampleRate,FPCurrentSound.BitsPerSample);
+      ts:=GetPCMLength(FPCurrentSound.LoopStart,FPCurrentSound.SampleRate,FPCurrentSound.BitsPerSample,1);
+      te:=GetPCMLength(FPCurrentSound.LoopEnd,FPCurrentSound.SampleRate,FPCurrentSound.BitsPerSample,1);
 
-      ps:=GetPCMSize(ts,FPCurrentSound.SampleRate,16);
-      pe:=GetPCMSize(te,FPCurrentSound.SampleRate,16);
+      ps:=GetPCMSize(ts,FPCurrentSound.SampleRate,16,1);
+      pe:=GetPCMSize(te,FPCurrentSound.SampleRate,16,1);
 
       ps:=(ps shr 1) shl 1;
       pe:=(pe shr 1) shl 1;

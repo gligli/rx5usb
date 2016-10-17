@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
     <Version Value="9"/>
@@ -41,9 +41,11 @@
             </SyntaxOptions>
           </Parsing>
           <CodeGeneration>
+            <TargetCPU Value="i386"/>
+            <TargetOS Value="win32"/>
             <Optimizations>
-              <VariablesInRegisters Value="True"/>
               <OptimizationLevel Value="2"/>
+              <VariablesInRegisters Value="True"/>
             </Optimizations>
           </CodeGeneration>
           <Linking>
@@ -58,12 +60,6 @@
               </Win32>
             </Options>
           </Linking>
-          <Other>
-            <CompilerMessages>
-              <MsgFileName Value=""/>
-            </CompilerMessages>
-            <CompilerPath Value="$(CompPath)"/>
-          </Other>
         </CompilerOptions>
       </Item2>
     </BuildModes>
@@ -92,7 +88,6 @@
       <Unit0>
         <Filename Value="rx5usb_tool.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="rx5usb_tool"/>
       </Unit0>
       <Unit1>
         <Filename Value="fmain.pas"/>
@@ -105,12 +100,10 @@
       <Unit2>
         <Filename Value="rx5classes.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="rx5classes"/>
       </Unit2>
       <Unit3>
         <Filename Value="rawhid.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="rawhid"/>
       </Unit3>
       <Unit4>
         <Filename Value="fprogram.pas"/>
@@ -118,12 +111,10 @@
         <ComponentName Value="ProgramForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="fprogram"/>
       </Unit4>
       <Unit5>
         <Filename Value="fairlightparsers.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="fairlightparsers"/>
       </Unit5>
     </Units>
   </ProjectOptions>
@@ -154,12 +145,6 @@
         </Win32>
       </Options>
     </Linking>
-    <Other>
-      <CompilerMessages>
-        <MsgFileName Value=""/>
-      </CompilerMessages>
-      <CompilerPath Value="$(CompPath)"/>
-    </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">

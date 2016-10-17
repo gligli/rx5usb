@@ -13,29 +13,29 @@ object ProgramForm: TProgramForm
   OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '1.0.4.0'
+  LCLVersion = '1.6.0.4'
   object gbSettings: TGroupBox
     Left = 8
     Height = 80
     Top = 8
     Width = 386
     Caption = 'Settings'
-    ClientHeight = 62
+    ClientHeight = 60
     ClientWidth = 382
     TabOrder = 0
     object Label1: TLabel
       Left = 14
-      Height = 16
+      Height = 15
       Top = 8
-      Width = 37
+      Width = 36
       Caption = 'Source'
       ParentColor = False
     end
     object Label2: TLabel
       Left = 14
-      Height = 16
+      Height = 15
       Top = 36
-      Width = 35
+      Width = 34
       Caption = 'Target'
       ParentColor = False
     end
@@ -157,7 +157,7 @@ object ProgramForm: TProgramForm
     Top = 95
     Width = 385
     Caption = 'Status'
-    ClientHeight = 47
+    ClientHeight = 45
     ClientWidth = 381
     TabOrder = 3
     object pbProgress: TProgressBar
@@ -170,11 +170,16 @@ object ProgramForm: TProgramForm
     end
     object llStatus: TLabel
       Left = 14
-      Height = 16
+      Height = 15
       Top = 0
-      Width = 39
+      Width = 38
       Caption = 'llStatus'
       ParentColor = False
     end
+  end
+  object odCustomProgram: TOpenDialog
+    Filter = 'All files (*.*)|*.*'
+    left = 8
+    top = 160
   end
 end

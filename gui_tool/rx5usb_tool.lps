@@ -1,21 +1,15 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Release"/>
-    <Units Count="57">
+    <Units Count="59">
       <Unit0>
         <Filename Value="rx5usb_tool.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="rx5usb_tool"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="38" Y="21"/>
-        <UsageCount Value="97"/>
-        <Loaded Value="True"/>
+        <CursorPos X="69" Y="34"/>
+        <UsageCount Value="102"/>
       </Unit0>
       <Unit1>
         <Filename Value="fmain.pas"/>
@@ -24,33 +18,25 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="FMain"/>
-        <EditorIndex Value="2"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="150"/>
-        <CursorPos X="19" Y="171"/>
-        <UsageCount Value="136"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <TopLine Value="131"/>
+        <CursorPos X="46" Y="137"/>
+        <UsageCount Value="141"/>
       </Unit1>
       <Unit2>
         <Filename Value="rx5classes.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="rx5classes"/>
-        <EditorIndex Value="0"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="701"/>
-        <CursorPos X="50" Y="744"/>
-        <UsageCount Value="136"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="951"/>
+        <CursorPos X="3" Y="960"/>
+        <UsageCount Value="141"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="rawhid.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="rawhid"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
         <CursorPos X="52" Y="6"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="49"/>
       </Unit3>
       <Unit4>
         <Filename Value="fprogram.pas"/>
@@ -58,41 +44,31 @@
         <ComponentName Value="ProgramForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="fprogram"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="3"/>
-        <CursorPos X="1" Y="72"/>
-        <UsageCount Value="44"/>
+        <TopLine Value="58"/>
+        <CursorPos X="115" Y="111"/>
+        <UsageCount Value="49"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="fairlightparsers.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="fairlightparsers"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
         <CursorPos X="49" Y="19"/>
-        <UsageCount Value="36"/>
+        <UsageCount Value="41"/>
       </Unit5>
       <Unit6>
         <Filename Value="gnugettext\gnugettext.pas"/>
-        <UnitName Value="gnugettext"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="914"/>
         <CursorPos X="122" Y="944"/>
         <UsageCount Value="20"/>
       </Unit6>
       <Unit7>
         <Filename Value="rx5usb_gui.lpr"/>
-        <UnitName Value="rx5usb_gui"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="39"/>
+        <CursorPos Y="39"/>
         <UsageCount Value="54"/>
       </Unit7>
       <Unit8>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\packages\fcl-base\src\contnrs.pp"/>
-        <UnitName Value="contnrs"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="44"/>
         <CursorPos X="5" Y="68"/>
         <UsageCount Value="10"/>
@@ -100,15 +76,12 @@
       <Unit9>
         <Filename Value="bass.pas"/>
         <UnitName Value="BASS"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="2"/>
         <CursorPos X="165" Y="37"/>
         <UsageCount Value="9"/>
       </Unit9>
       <Unit10>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\objpas\objpas.pp"/>
-        <UnitName Value="objpas"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="85"/>
         <CursorPos X="59" Y="119"/>
         <UsageCount Value="9"/>
@@ -116,92 +89,68 @@
       <Unit11>
         <Filename Value="C:\lazarus\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="1358"/>
         <CursorPos X="14" Y="1387"/>
         <UsageCount Value="5"/>
       </Unit11>
       <Unit12>
         <Filename Value="C:\lazarus\lcl\include\application.inc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="2137"/>
-        <CursorPos X="1" Y="2180"/>
+        <CursorPos Y="2180"/>
         <UsageCount Value="5"/>
       </Unit12>
       <Unit13>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="2689"/>
         <CursorPos X="51" Y="2717"/>
         <UsageCount Value="6"/>
       </Unit13>
       <Unit14>
         <Filename Value="F:\Download\lazarus\acs-2.3\Src\Common\ACS_MAD.pas"/>
-        <UnitName Value="ACS_MAD"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="276"/>
         <CursorPos X="55" Y="306"/>
         <UsageCount Value="7"/>
       </Unit14>
       <Unit15>
         <Filename Value="F:\Download\lazarus\acs-2.3\Src\Common\ACS_Streams.pas"/>
-        <UnitName Value="ACS_Streams"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
         <CursorPos X="3" Y="24"/>
         <UsageCount Value="5"/>
       </Unit15>
       <Unit16>
         <Filename Value="F:\Download\lazarus\acs-2.3\Src\Common\ACS_Classes.pas"/>
-        <UnitName Value="ACS_Classes"/>
         <TopLine Value="356"/>
         <CursorPos X="10" Y="354"/>
         <UsageCount Value="6"/>
       </Unit16>
       <Unit17>
         <Filename Value="F:\Download\lazarus\acs-2.3\Src\Common\ACS_Wave.pas"/>
-        <UnitName Value="ACS_Wave"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
         <CursorPos X="3" Y="31"/>
         <UsageCount Value="5"/>
       </Unit17>
       <Unit18>
         <Filename Value="F:\Download\lazarus\acs-2.3\Src\Common\ACS_Converters.pas"/>
-        <UnitName Value="ACS_Converters"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="454"/>
-        <CursorPos X="1" Y="463"/>
+        <CursorPos Y="463"/>
         <UsageCount Value="7"/>
       </Unit18>
       <Unit19>
         <Filename Value="F:\Download\lazarus\acs-2.3\Src\Common\ACS_Misc.pas"/>
-        <UnitName Value="ACS_Misc"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
         <CursorPos X="14" Y="58"/>
         <UsageCount Value="6"/>
       </Unit19>
       <Unit20>
         <Filename Value="C:\lazarus\lcl\filectrl.pp"/>
         <UnitName Value="FileCtrl"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="199"/>
-        <CursorPos X="1" Y="1"/>
         <UsageCount Value="10"/>
       </Unit20>
       <Unit21>
         <Filename Value="F:\Download\lazarus\acs-2.3\Src\Common\ACS_Procs.pas"/>
-        <UnitName Value="ACS_Procs"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
         <CursorPos X="17" Y="22"/>
         <UsageCount Value="5"/>
       </Unit21>
       <Unit22>
         <Filename Value="F:\Download\lazarus\acs-2.3\Src\Win32\ACS_Audio.pas"/>
-        <UnitName Value="ACS_Audio"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="218"/>
         <CursorPos X="19" Y="252"/>
         <UsageCount Value="5"/>
@@ -209,36 +158,30 @@
       <Unit23>
         <Filename Value="C:\lazarus\lcl\controls.pp"/>
         <UnitName Value="Controls"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="145"/>
         <CursorPos X="27" Y="175"/>
         <UsageCount Value="9"/>
       </Unit23>
       <Unit24>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\objpas\classes\classesh.inc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="80"/>
         <CursorPos X="3" Y="110"/>
         <UsageCount Value="12"/>
       </Unit24>
       <Unit25>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\objpas\classes\streams.inc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="187"/>
         <CursorPos X="7" Y="208"/>
         <UsageCount Value="5"/>
       </Unit25>
       <Unit26>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\objpas\classes\classes.inc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="113"/>
         <CursorPos X="3" Y="115"/>
         <UsageCount Value="5"/>
       </Unit26>
       <Unit27>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\classes\acs_classes.pas"/>
-        <UnitName Value="acs_classes"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="511"/>
         <CursorPos X="3" Y="484"/>
         <UsageCount Value="7"/>
@@ -246,7 +189,6 @@
       </Unit27>
       <Unit28>
         <Filename Value="fmain.lfm"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="819"/>
         <CursorPos X="4" Y="878"/>
         <UsageCount Value="5"/>
@@ -254,8 +196,6 @@
       </Unit28>
       <Unit29>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\classes\acs_audio.pas"/>
-        <UnitName Value="acs_audio"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="523"/>
         <CursorPos X="3" Y="528"/>
         <UsageCount Value="5"/>
@@ -263,51 +203,38 @@
       </Unit29>
       <Unit30>
         <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="126"/>
-        <CursorPos X="1" Y="163"/>
+        <CursorPos Y="163"/>
         <UsageCount Value="5"/>
       </Unit30>
       <Unit31>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\classes\acs_file.pas"/>
-        <UnitName Value="acs_file"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="319"/>
-        <CursorPos X="1" Y="349"/>
+        <CursorPos Y="349"/>
         <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit31>
       <Unit32>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\fileformats\acs_mpeg.pas"/>
-        <UnitName Value="acs_mpeg"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
         <CursorPos X="9" Y="48"/>
         <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit32>
       <Unit33>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\classes\acs_converters.pas"/>
-        <UnitName Value="acs_converters"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="513"/>
-        <CursorPos X="1" Y="570"/>
+        <CursorPos Y="570"/>
         <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit33>
       <Unit34>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\fileformats\acs_allformats.pas"/>
-        <UnitName Value="acs_allformats"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
         <CursorPos X="8" Y="11"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit34>
       <Unit35>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\fileformats\acs_vorbis.pas"/>
-        <UnitName Value="acs_vorbis"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="44"/>
         <CursorPos X="37" Y="520"/>
         <UsageCount Value="6"/>
@@ -315,8 +242,6 @@
       </Unit35>
       <Unit36>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\fileformats\acs_dsfiles.pas"/>
-        <UnitName Value="acs_dsfiles"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="152"/>
         <CursorPos X="84" Y="155"/>
         <UsageCount Value="5"/>
@@ -324,8 +249,6 @@
       </Unit36>
       <Unit37>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\fileformats\windows\directshow9.pas"/>
-        <UnitName Value="directshow9"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="142"/>
         <CursorPos X="42" Y="175"/>
         <UsageCount Value="5"/>
@@ -333,33 +256,25 @@
       </Unit37>
       <Unit38>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\fileformats\acs_mac.pas"/>
-        <UnitName Value="acs_mac"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="416"/>
-        <CursorPos X="1" Y="1"/>
         <UsageCount Value="5"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit38>
       <Unit39>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\fileformats\acs_mad.pas"/>
-        <UnitName Value="acs_mad"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="180"/>
-        <CursorPos X="1" Y="225"/>
+        <CursorPos Y="225"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit39>
       <Unit40>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\win\tthread.inc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="68"/>
         <CursorPos X="49" Y="102"/>
         <UsageCount Value="5"/>
       </Unit40>
       <Unit41>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\fileformats\acs_wave.pas"/>
-        <UnitName Value="acs_wave"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="41"/>
         <CursorPos X="7" Y="1468"/>
         <UsageCount Value="6"/>
@@ -367,8 +282,6 @@
       </Unit41>
       <Unit42>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\classes\acs_misc.pas"/>
-        <UnitName Value="acs_misc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="23"/>
         <CursorPos X="5" Y="229"/>
         <UsageCount Value="6"/>
@@ -376,242 +289,118 @@
       </Unit42>
       <Unit43>
         <Filename Value="F:\Download\lazarus\acs-svn\Src\classes\acs_types.pas"/>
-        <UnitName Value="acs_types"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
         <CursorPos X="3" Y="39"/>
         <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit43>
       <Unit44>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\packages\sdl\src\sdl_mixer.pas"/>
-        <UnitName Value="sdl_mixer"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="519"/>
         <CursorPos X="10" Y="526"/>
         <UsageCount Value="5"/>
       </Unit44>
       <Unit45>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\packages\sdl\src\sdl.pas"/>
-        <UnitName Value="sdl"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
         <UsageCount Value="6"/>
       </Unit45>
       <Unit46>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\packages\sdl\src\sdl_mixer_nosmpeg.pas"/>
-        <UnitName Value="sdl_mixer_nosmpeg"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
         <UsageCount Value="5"/>
       </Unit46>
       <Unit47>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\win32\classes.pp"/>
         <UnitName Value="Classes"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
         <UsageCount Value="5"/>
       </Unit47>
       <Unit48>
         <Filename Value="sdl_sound.pas"/>
-        <UnitName Value="sdl_sound"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
         <UsageCount Value="7"/>
       </Unit48>
       <Unit49>
         <Filename Value="C:\lazarus\lcl\include\toolbutton.inc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="742"/>
-        <CursorPos X="1" Y="772"/>
+        <CursorPos Y="772"/>
         <UsageCount Value="6"/>
       </Unit49>
       <Unit50>
         <Filename Value="C:\lazarus\lcl\include\buttoncontrol.inc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="5"/>
         <CursorPos X="56" Y="37"/>
         <UsageCount Value="6"/>
       </Unit50>
       <Unit51>
         <Filename Value="jedi-sdl\jedi_sdl.pas"/>
-        <UnitName Value="jedi_sdl"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="1546"/>
         <CursorPos X="86" Y="1576"/>
         <UsageCount Value="9"/>
       </Unit51>
       <Unit52>
         <Filename Value="gnugettext\gnugettext_fpc.pp"/>
-        <UnitName Value="gnugettext_fpc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="279"/>
         <CursorPos X="75" Y="310"/>
         <UsageCount Value="19"/>
       </Unit52>
       <Unit53>
         <Filename Value="jedi-sdl\jedi_sdl_sound.pas"/>
-        <UnitName Value="jedi_sdl_sound"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="82"/>
         <CursorPos X="15" Y="124"/>
         <UsageCount Value="9"/>
       </Unit53>
       <Unit54>
         <Filename Value="C:\lazarus\fpc\2.6.0\source\packages\fcl-base\src\gettext.pp"/>
-        <UnitName Value="gettext"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
         <UsageCount Value="9"/>
       </Unit54>
       <Unit55>
         <Filename Value="C:\lazarus\lcl\translations.pas"/>
         <UnitName Value="Translations"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="535"/>
-        <CursorPos X="1" Y="565"/>
+        <CursorPos Y="565"/>
         <UsageCount Value="10"/>
       </Unit55>
       <Unit56>
         <Filename Value="newac-libsamplerate\libsamplerate.pas"/>
-        <UnitName Value="libsamplerate"/>
-        <EditorIndex Value="1"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="46"/>
         <CursorPos X="13" Y="73"/>
-        <UsageCount Value="12"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="13"/>
       </Unit56>
+      <Unit57>
+        <Filename Value="C:\lazarus\fpc\2.6.2\source\packages\sdl\src\sdl.pas"/>
+        <TopLine Value="2493"/>
+        <CursorPos X="78" Y="2556"/>
+        <UsageCount Value="11"/>
+      </Unit57>
+      <Unit58>
+        <Filename Value="C:\lazarus\lcl\lresources.pp"/>
+        <UnitName Value="LResources"/>
+        <CursorPos X="26" Y="34"/>
+        <UsageCount Value="10"/>
+      </Unit58>
     </Units>
-    <General>
-      <ActiveWindowIndexAtStart Value="0"/>
-    </General>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="730" Column="1" TopLine="706"/>
+        <Filename Value="fprogram.pas"/>
+        <Caret Line="77" Column="129" TopLine="52"/>
       </Position1>
       <Position2>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="733" Column="1" TopLine="706"/>
+        <Filename Value="fprogram.pas"/>
+        <Caret Line="109" Column="91" TopLine="47"/>
       </Position2>
       <Position3>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="734" Column="1" TopLine="706"/>
+        <Filename Value="fprogram.pas"/>
+        <Caret Line="111" Column="115" TopLine="40"/>
       </Position3>
       <Position4>
         <Filename Value="rx5classes.pas"/>
-        <Caret Line="735" Column="1" TopLine="706"/>
+        <Caret Line="192" Column="15" TopLine="156"/>
       </Position4>
       <Position5>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="736" Column="1" TopLine="706"/>
+        <Filename Value="fprogram.pas"/>
+        <Caret Line="111" Column="115" TopLine="40"/>
       </Position5>
       <Position6>
         <Filename Value="rx5classes.pas"/>
-        <Caret Line="737" Column="1" TopLine="706"/>
+        <Caret Line="960" Column="3" TopLine="942"/>
       </Position6>
-      <Position7>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="740" Column="1" TopLine="706"/>
-      </Position7>
-      <Position8>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="743" Column="1" TopLine="706"/>
-      </Position8>
-      <Position9>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="744" Column="1" TopLine="706"/>
-      </Position9>
-      <Position10>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="748" Column="1" TopLine="706"/>
-      </Position10>
-      <Position11>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="750" Column="1" TopLine="706"/>
-      </Position11>
-      <Position12>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="753" Column="1" TopLine="708"/>
-      </Position12>
-      <Position13>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="754" Column="1" TopLine="709"/>
-      </Position13>
-      <Position14>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="723" Column="84" TopLine="703"/>
-      </Position14>
-      <Position15>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="137" Column="14" TopLine="112"/>
-      </Position15>
-      <Position16>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="325" Column="3" TopLine="321"/>
-      </Position16>
-      <Position17>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="136" Column="14" TopLine="111"/>
-      </Position17>
-      <Position18>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="734" Column="1" TopLine="695"/>
-      </Position18>
-      <Position19>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="705" Column="1" TopLine="695"/>
-      </Position19>
-      <Position20>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="651" Column="42" TopLine="638"/>
-      </Position20>
-      <Position21>
-        <Filename Value="fmain.pas"/>
-        <Caret Line="511" Column="74" TopLine="493"/>
-      </Position21>
-      <Position22>
-        <Filename Value="fmain.pas"/>
-        <Caret Line="576" Column="56" TopLine="553"/>
-      </Position22>
-      <Position23>
-        <Filename Value="fmain.pas"/>
-        <Caret Line="758" Column="55" TopLine="734"/>
-      </Position23>
-      <Position24>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="894" Column="51" TopLine="880"/>
-      </Position24>
-      <Position25>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="746" Column="54" TopLine="721"/>
-      </Position25>
-      <Position26>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="761" Column="38" TopLine="721"/>
-      </Position26>
-      <Position27>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="746" Column="25" TopLine="721"/>
-      </Position27>
-      <Position28>
-        <Filename Value="rx5classes.pas"/>
-        <Caret Line="743" Column="23" TopLine="721"/>
-      </Position28>
-      <Position29>
-        <Filename Value="fmain.pas"/>
-        <Caret Line="804" Column="20" TopLine="773"/>
-      </Position29>
-      <Position30>
-        <Filename Value="fmain.pas"/>
-        <Caret Line="561" Column="1" TopLine="543"/>
-      </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

@@ -34,7 +34,7 @@ type
   end;
 
   TRX5ProgressStatus=(rpsIdle=0,rpsConnecting=1,rpsAwaitingResponse=2,rpsUploading=3,rpsDownloading=4,rpsError=5,rpsDone=6,rpsInterrupted=7);
-  TRX5BankIndex=(rbiNone=0,rbiSide1BankA=1,rbiSide1BankB=2,rbiSide2BankA=3,rbiSide2BankB=4);
+  TRX5BankIndex=(rbiNone=0,rbiSide1BankA=1,rbiSide1BankB=2,rbiSide2BankA=3,rbiSide2BankB=4,rbiFull=5);
   TRX5SoundFormat=(rsfNone=0,rsfPCM8=1,rsfPCM12=2);
 
   TRX5ProgressEvent=function(APosition,AMax:Integer):Boolean of object;
@@ -239,11 +239,11 @@ const
   CRX5BasePitch=360;
   CRX5BaseSampleRate=25000;
 
-  CRX5BankToAddress:array[TRX5BankIndex] of Integer = (-1,0*CRX5BankSize,1*CRX5BankSize,2*CRX5BankSize,3*CRX5BankSize);
+  CRX5BankToAddress:array[TRX5BankIndex] of Integer = (-1,0*CRX5BankSize,1*CRX5BankSize,2*CRX5BankSize,3*CRX5BankSize,0);
   CRX5StatusText:array[TRX5ProgressStatus] of PResStringRec = (@SIdle,@SConnecting,@SAwaitingResponse,@SUploading,@SDownloading,@SError,@SDone,@SInterrupted);
 
-function GetPCMLength(ASize,ASampleRate,ABitsPerSample:Integer):TDateTime;
-function GetPCMSize(ALength:TDateTime;ASampleRate,ABitsPerSample:Integer):Integer;
+function GetPCMLength(ASize, ASampleRate, ABitsPerSample, AChannels: Integer): TDateTime;
+function GetPCMSize(ALength:TDateTime;ASampleRate,ABitsPerSample,AChannels:Integer):Integer;
 
 function RX5_8To16Bit(AData:Byte):Word;
 procedure RX5_12To16Bit(AData1,AData2,AData3:Byte; out AOut1,AOut2:Word);
@@ -255,19 +255,19 @@ function RX5_Checksum(APtr:PByte;ASize:Integer):Word;
 
 implementation
 
-function GetPCMLength(ASize, ASampleRate, ABitsPerSample: Integer): TDateTime;
+function GetPCMLength(ASize, ASampleRate, ABitsPerSample, AChannels: Integer): TDateTime;
 begin
   Result:=0;
-  if (ASize=0) or (ASampleRate=0) or (ABitsPerSample=0) then
+  if (ASize=0) or (ASampleRate=0) or (ABitsPerSample=0) or (AChannels=0) then
     Exit;
 
-  Result:=abs(ASize/((ABitsPerSample/8.0)*ASampleRate*SecsPerDay));
+  Result:=abs(ASize/((ABitsPerSample/8.0)*ASampleRate*AChannels*SecsPerDay));
 end;
 
-function GetPCMSize(ALength: TDateTime; ASampleRate, ABitsPerSample: Integer
+function GetPCMSize(ALength: TDateTime; ASampleRate, ABitsPerSample, AChannels: Integer
   ): Integer;
 begin
-  Result:=ceil(ALength*SecsPerDay*ASampleRate*(ABitsPerSample/8.0));
+  Result:=ceil(ALength*SecsPerDay*ASampleRate*AChannels*(ABitsPerSample/8.0));
 end;
 
 function RX5_8To16Bit(AData: Byte): Word;
@@ -317,12 +317,12 @@ begin
   if RawMode then
     Result:=Length(FFinalPCM)
   else
-    Result:=GetPCMSize(GetSourceLength,SampleRate,BitsPerSample);
+    Result:=GetPCMSize(GetSourceLength,SampleRate,BitsPerSample,1);
 end;
 
 function TRX5Sound.GetFinalLength: TDateTime;
 begin
-  Result:=GetPCMLength(FinalPCMSize,SampleRate,BitsPerSample);
+  Result:=GetPCMLength(FinalPCMSize,SampleRate,BitsPerSample,1);
 end;
 
 function TRX5Sound.GetPitch: Integer;
@@ -342,7 +342,7 @@ end;
 
 function TRX5Sound.GetSourceLength: TDateTime;
 begin
-  Result:=GetPCMLength(SourcePCMSize,SourceSampleRate,SourceBitsPerSample);
+  Result:=GetPCMLength(SourcePCMSize,SourceSampleRate,SourceBitsPerSample,SourceChannels);
 end;
 
 function TRX5Sound.GetSourcePCMSize: Integer;
@@ -882,7 +882,7 @@ begin
   hms:=TMemoryStream.Create;
   try
     hms.WriteDWord($00000000);
-    hms.WriteByte(FBankId);
+    hms.WriteByte(FBankID);
     hms.WriteByte(Sounds.Count);
 
     while AStream.Size<CRX5BankHeaderSize do

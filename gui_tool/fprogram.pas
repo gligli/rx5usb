@@ -22,6 +22,7 @@ type
     Label2: TLabel;
     llStatus: TLabel;
     llSource: TLabel;
+    odCustomProgram: TOpenDialog;
     pbProgress: TProgressBar;
     procedure btCancelClick(Sender: TObject);
     procedure btProgramClick(Sender: TObject);
@@ -36,6 +37,7 @@ type
     FFileName:String;
     FCartridge:TRX5Cartridge;
     FCancel:Boolean;
+    FCustomProgram: Boolean;
     procedure UpdateState;
     function RX5Progress(APosition,AMax:Integer):Boolean;
   public
@@ -58,7 +60,8 @@ resourcestring
               'Side 1 Bank A'+sLineBreak+
               'Side 1 Bank B'+sLineBreak+
               'Side 2 Bank A'+sLineBreak+
-              'Side 2 Bank B'+sLineBreak;
+              'Side 2 Bank B'+sLineBreak+
+              'Custom programming...'+sLineBreak;
 
 { TProgramForm }
 
@@ -100,12 +103,22 @@ end;
 procedure TProgramForm.cbTargetChange(Sender: TObject);
 begin
   FCartridge.BankIndex:=TRX5BankIndex(cbTarget.ItemIndex);
+  if (cbTarget.ItemIndex = 5) and odCustomProgram.Execute then
+  begin
+    if FCustomProgram then
+      FPStream.Free;
+    FPStream := TFileStream.Create(odCustomProgram.FileName, fmOpenRead or fmShareDenyNone);
+    FFileName := odCustomProgram.FileName;
+    FCustomProgram := True;
+  end;
   UpdateState;
 end;
 
 procedure TProgramForm.FormDestroy(Sender: TObject);
 begin
   FCartridge.Free;
+  if FCustomProgram then
+    FPStream.Free;
 end;
 
 procedure TProgramForm.FormShow(Sender: TObject);
